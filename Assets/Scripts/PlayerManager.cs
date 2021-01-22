@@ -635,6 +635,18 @@ public class PlayerManager : MonoBehaviourPun
 	public void UncleCheester()
 	{
 		_uiManager._uncleCheesterPanel.SetActive(true);
+		if (_uiManager._ucListView == null)
+		{
+			GameObject ucListview = Instantiate(_uiManager._ucListViewPrefab, _uiManager._ucListViewSpawnPoint.position, Quaternion.identity);
+			ucListview.name = ucListview.name.Replace("(Clone)", "").Trim();
+			ucListview.transform.SetParent(_uiManager._ucListViewSpawnPoint);
+			ucListview.transform.localScale = Vector3.one;
+			_uiManager._ucListView = ucListview;
+			ucListview.GetComponent<UCListViewManager>()._pManager = this;
+			ucListview.GetComponent<UCListViewManager>()._uCheester = _uiManager._uncleCheesterPanel.GetComponent<UncleChester>();
+		}
+
+		_uiManager.PopulateListView("Downpayment ListView");
 	}
 
 	public void DiscardOtbCard(OTBCard discard)

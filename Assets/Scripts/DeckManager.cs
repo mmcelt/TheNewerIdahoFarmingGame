@@ -852,12 +852,12 @@ public class DeckManager : MonoBehaviourPun
 		//desc = "CUSTOM HARVESTER"; //TESTING
 		//cardNum = 10;						//TESTING
 		//desc = "TETON DAM!";				//TESTING
-		//cardNum = 15;						//TESTING
-		//desc = "UNCLE CHEESTER";			//TESTING
-		//cardNum = 1;							//TESTING
-		//desc = "INCOME TAX!";				//TESTING
-		//cardNum = 19;						//TESTING
-		//desc = "CATTLE MUTILATION!";	//TESTING
+		cardNum = 15;                 //TESTING
+		desc = "UNCLE CHEESTER";         //TESTING
+													//cardNum = 1;							//TESTING
+													//desc = "INCOME TAX!";				//TESTING
+													//cardNum = 19;						//TESTING
+													//desc = "CATTLE MUTILATION!";	//TESTING
 
 		//declare an FFCard object
 		FFCard newFFCard = new FFCard();

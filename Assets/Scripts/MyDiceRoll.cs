@@ -218,11 +218,11 @@ public class MyDiceRoll : MonoBehaviour
 				break;
 
 			case IFG.Kay:
-				dieTint = new Color(0.8773f, 0.8773f, 0.4345f);
+				dieTint = new Color(0.8679f, 0.4134f, 0.4345f);
 				break;
 
 			case IFG.Mike:
-				dieTint = new Color(0.8679f, 0.4134f, 0.4134f);
+				dieTint = new Color(0.8773f, 0.8773f, 0.4345f);
 				break;
 
 			case IFG.Ric:

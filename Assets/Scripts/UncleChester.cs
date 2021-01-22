@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Endgame;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,14 +8,15 @@ public class UncleChester : MonoBehaviour
 {
 	#region Public / Serialized Fields
 
-	[SerializeField] Dropdown downpaymentDropdown;
+	//[SerializeField] Dropdown downpaymentDropdown;
+	[SerializeField] ListView _theListView;
 	[SerializeField] Text _pCashText, _pNotesText;
 
 	#endregion
 
 	#region Private Fields / References
 
-	List<string> _downpayments = new List<string>();
+	public List<string> _downpayments = new List<string>();
 
 	int _downpayment, _pCash, _pNotes, _tempCash, _tempNotes;
 
@@ -35,7 +37,7 @@ public class UncleChester : MonoBehaviour
 		if (_pManager==null)
 			_pManager = GetComponentInParent<PlayerManager>();
 
-		PopulateTheDropdown();
+		PopulateTheList();
 
 		_pCash = _pManager._pCash;
 		_pNotes = _pManager._pNotes;
@@ -58,7 +60,7 @@ public class UncleChester : MonoBehaviour
 	{
 		ResetTempValues();
 
-		if (index > 0)
+		if (index >= 0)
 		{
 			_downpayment = int.Parse(_downpayments[index]);
 
@@ -82,10 +84,21 @@ public class UncleChester : MonoBehaviour
 
 	#region Private Methods
 
+	void PopulateTheList()
+	{
+		_downpayments = new List<string>();
+		int counter = 0;
+		for (int i = 2000; i <= 10000; i+=500)
+		{
+			_downpayments.Add(i.ToString());
+			counter++;
+		}
+	}
+
 	void PopulateTheDropdown()
 	{
 		_downpayments.Clear();
-		downpaymentDropdown.ClearOptions();
+		//downpaymentDropdown.ClearOptions();
 
 		string header = "SELECT YOUR DOWNPAYMENT...";
 
@@ -96,7 +109,12 @@ public class UncleChester : MonoBehaviour
 			_downpayments.Add(i.ToString());
 		}
 
-		downpaymentDropdown.AddOptions(_downpayments);
+		//downpaymentDropdown.AddOptions(_downpayments);
+	}
+
+	void PopulateTheListView()
+	{
+
 	}
 
 	void UpdateTheNumbers()

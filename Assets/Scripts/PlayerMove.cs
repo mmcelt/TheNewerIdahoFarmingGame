@@ -116,7 +116,7 @@ public class PlayerMove : MonoBehaviourPun
 	public void InitMove(int die)
 	{
 		_die = die;
-		_die = 50;	//TESTING
+		//_die = 50;	//TESTING
 
 #if UNITY_EDITOR	//TODO: UNCOMMENT THIS WHEN TESTING COMPLETE
 
@@ -225,6 +225,18 @@ public class PlayerMove : MonoBehaviourPun
 		if (Input.GetKey(KeyCode.Alpha6))
 		{
 			_die = 6;
+		}
+		if (Input.GetKey(KeyCode.Alpha7))
+		{
+			_die = 7;
+		}
+		if (Input.GetKey(KeyCode.Alpha8))
+		{
+			_die = 8;
+		}
+		if (Input.GetKey(KeyCode.Alpha9))
+		{
+			_die = 9;
 		}
 	}
 

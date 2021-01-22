@@ -158,6 +158,10 @@ public class UIManager : MonoBehaviourPun
 	public GameObject _otbListView;
 	[SerializeField] Transform _otbListSpawnPoint;
 
+	public GameObject _ucListViewPrefab;
+	public GameObject _ucListView;
+	public Transform _ucListViewSpawnPoint;
+
 	[Header("Misc Stuff")]
 	public int _tempCash;
 	public int _tempNotes;
@@ -1390,7 +1394,7 @@ public class UIManager : MonoBehaviourPun
 	void InitializeTheActionsPanel()
 	{
 		ResetTempFunds();
-		PopulateDropdown(_otbDropdown.name);
+		//PopulateDropdown(_otbDropdown.name);
 		PopulateListView(_otbListView.name);
 		_repayLoanInput.Select();
 	}
@@ -1520,12 +1524,16 @@ public class UIManager : MonoBehaviourPun
 		}
 	}
 
-	void PopulateListView(string target)
+	public void PopulateListView(string target)
 	{
 		if (target == "OTB ListView")
 		{
 			Debug.Log("In PopulateListView");
 			_otbListView.GetComponent<OTBListViewManager>().AddListViewOTBItems();
+		}
+		if(target== "Downpayment ListView")
+		{
+			_ucListView.GetComponent<UCListViewManager>().AddListViewDownPaymentItems();
 		}
 	}
 
