@@ -33,7 +33,7 @@ public class RemotePlayerUpdater : MonoBehaviourPun
 		_uiManager = GameManager.Instance.uiManager;
 
 		if (photonView.IsMine && GameManager.Instance._numberOfPlayers > 1)
-			StartCoroutine(UpdateRemotePlayerData());
+			StartCoroutine(UpdateRemotePlayerDataRoutine());
 	}
 	#endregion
 
@@ -45,27 +45,27 @@ public class RemotePlayerUpdater : MonoBehaviourPun
 			_pManager = GetComponent<PlayerManager>();
 
 		//Debug.Log("In UpdtMyData2Others");
-		photonView.RPC("UpdateTheData", RpcTarget.Others, _pManager._pCash, _pManager._pNotes, _pManager._myOtbCount, _pManager._pNetworth);
+		photonView.RPC(nameof(RpcUpdateTheData), RpcTarget.Others, _pManager._pCash, _pManager._pNotes, _pManager._myOtbCount, _pManager._pNetworth);
 	}
 
 	#endregion
 
 	#region Private Methods
 
-	public IEnumerator UpdateRemotePlayerData()
+	public IEnumerator UpdateRemotePlayerDataRoutine()
 	{
 		for (int i = 0; i < 5; i++)
 		{
+			yield return new WaitForSeconds(0.5f);
 			//Debug.Log("NOP in URPD: " + GameManager.Instance._numberOfPlayers);
-			photonView.RPC("UpdateTheData", RpcTarget.Others, _pManager._pCash, _pManager._pNotes, _pManager._myOtbCount, _pManager._pNetworth);
-			yield return new WaitForSeconds(0.75f);
+			photonView.RPC(nameof(RpcUpdateTheData), RpcTarget.Others, _pManager._pCash, _pManager._pNotes, _pManager._myOtbCount, _pManager._pNetworth);
 		}
 		//StartCoroutine(UpdateRemotePlayerData());
 		_coroutineStopped = true;
 	}
 
 	[PunRPC]
-	void UpdateTheData(int myCash, int myNotes, int myOtbs, int myNetworth, PhotonMessageInfo info)
+	void RpcUpdateTheData(int myCash, int myNotes, int myOtbs, int myNetworth, PhotonMessageInfo info)
 	{
 		if (_pManager == null)
 			_uiManager = GameManager.Instance.uiManager;

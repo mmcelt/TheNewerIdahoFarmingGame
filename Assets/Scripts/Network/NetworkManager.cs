@@ -98,8 +98,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 		//int test = 20;
 		//Debug.Log("TEST: " + (test /= 10));
 		//Debug.Log(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData));
-		Debug.Log("Full Path: " + Path.GetFullPath("."));
 
+		string location = Application.persistentDataPath;
+		Debug.Log(location);
 	}
 	#endregion
 

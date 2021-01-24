@@ -24,7 +24,7 @@ public class WinnerList : MonoBehaviour
 	#region Private Fields / References
 
 	UIManager _uiManager;
-	Winners _winners;
+	Winners _winners = null;
 
 	string _myDataLocation;
 
@@ -58,10 +58,10 @@ public class WinnerList : MonoBehaviour
 
 	void Start()
 	{
-		//PlayerPrefs.DeleteAll();
 		//_myDataLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/IFG";
-		_myDataLocation = Path.GetFullPath(".");
-		Debug.Log("Full Path: " + Path.GetFullPath("."));
+		//_myDataLocation = Path.GetFullPath(".");
+		_myDataLocation = Application.persistentDataPath;
+		//Debug.Log(_myDataLocation);
 
 		_uiManager = GameManager.Instance.uiManager;
 
@@ -75,7 +75,7 @@ public class WinnerList : MonoBehaviour
 
 	public void AddWinnerListEntry(string pName, string fName, int nw, int endGameNW, int nop, string[] runnersUpNames, string[] runnerUpFarmers, int[] runnerUpNetworkths)
 	{
-		//create WinnerListEntry
+		//create WinnerListEntryReadAllText
 		WinnerEntry winnerListEntry = new WinnerEntry
 		{
 			date = System.DateTime.Now.ToShortDateString(),
@@ -94,10 +94,26 @@ public class WinnerList : MonoBehaviour
 		{
 			string jsonString = File.ReadAllText(_myDataLocation + "/WinnerList.json");
 			_winners = JsonUtility.FromJson<Winners>(jsonString);
+
+			////open the file to read...
+			//using (StreamReader sr = File.OpenText(_myDataLocation + "/WinnerList.json"))
+			//{
+			//	string jsonString;
+			//	while ((jsonString = sr.ReadLine()) != null)
+			//	{
+			//		_winners = JsonUtility.FromJson<Winners>(jsonString);
+			//	}
+			//}
 		}
 		else
 		{
 			Debug.Log("No Saved List Found!");
+			//create the file...
+			using(StreamWriter sw = File.CreateText(_myDataLocation + "/WinnerList.json"))
+			{
+				string jsonString = "";
+				sw.WriteLine(jsonString);
+			}
 		}
 
 		if (_winners == null)
@@ -116,7 +132,14 @@ public class WinnerList : MonoBehaviour
 
 		//save updated Winners
 		string json = JsonUtility.ToJson(_winners);
-		File.WriteAllText(_myDataLocation, json);
+		//File.WriteAllText(_myDataLocation, json);
+
+		using (StreamWriter sw = File.CreateText(_myDataLocation + "/WinnerList.json"))
+		{
+			//string jsonString = "";
+			sw.WriteLine(json);
+		}
+
 
 		if (GameManager.Instance._numberOfPlayers > 1)
 			SendListToOthers();
@@ -131,21 +154,40 @@ public class WinnerList : MonoBehaviour
 		{
 			string jsonString = File.ReadAllText(_myDataLocation + "/WinnerList.json");
 			_winners = JsonUtility.FromJson<Winners>(jsonString);
+		
+		//using (StreamReader sr = File.OpenText(_myDataLocation + "/WinnerList.json"))
+		//	{
+		//		string jsonString;
+		//		while ((jsonString = sr.ReadLine()) != null)
+		//		{
+		//			_winners = JsonUtility.FromJson<Winners>(jsonString);
+		//		}
+		//	}
 		}
 		else
 		{
 			Debug.LogWarning("NO DAMN LIST PRESENT");
-			File.Create(_myDataLocation + "/WinnerList.json");
+			//File.Create(_myDataLocation + "/WinnerList.json");
 			return;
 		}
 
 		if (GameManager.Instance._numberOfPlayers > 1)
 		{
-			//send MasterClient send his list to all
+			//MasterClient send his list to all
 			if (PhotonNetwork.IsMasterClient)
 			{
 				//event data
 				string myList = File.ReadAllText(_myDataLocation + "/WinnerList.json");
+				//string myList;
+				//using (StreamReader sr = File.OpenText(_myDataLocation + "/WinnerList.json"))
+				//{
+				//	//string jsonString;
+				//	while ((myList = sr.ReadLine()) != null)
+				//	{
+				//		_winners = JsonUtility.FromJson<Winners>(myList);
+				//	}
+				//}
+
 				object[] sndData = new object[] { myList };
 				//event options
 				RaiseEventOptions eventOptions = new RaiseEventOptions
@@ -177,14 +219,27 @@ public class WinnerList : MonoBehaviour
 
 		if (_winners == null)
 		{
+			Debug.Log("_winners is NULL");
+
 			if (File.Exists(_myDataLocation + "/WinnerList.json"))
 			{
 				string jsonString = File.ReadAllText(_myDataLocation + "/WinnerList.json");
 				_winners = JsonUtility.FromJson<Winners>(jsonString);
+
+				////open the file to read...
+				//using (StreamReader sr = File.OpenText(_myDataLocation + "/WinnerList.json"))
+				//{
+				//	string jsonString;
+				//	while ((jsonString = sr.ReadLine()) != null)
+				//	{
+				//		_winners = JsonUtility.FromJson<Winners>(jsonString);
+				//	}
+				//}
 			}
 			else
 			{
 				Debug.LogError("NO WINNERS LIST FOUND!");
+				
 				return;
 			}
 		}
@@ -249,17 +304,32 @@ public class WinnerList : MonoBehaviour
 			//extract data
 			object[] recData = (object[])eventData.CustomData;
 			string jsonString = (string)recData[0];
-			File.WriteAllText(Application.persistentDataPath + "/WinnerList.json", jsonString);
+
+			//File.WriteAllText(Application.persistentDataPath + "/WinnerList.json", jsonString);
+			using (StreamWriter sw = File.CreateText(_myDataLocation + "/WinnerList.json"))
+			{
+				//string jsonString = "";
+				sw.WriteLine(jsonString);
+			}
 
 			if (File.Exists(Application.persistentDataPath + "/WinnerList.json"))
 			{
-				jsonString = File.ReadAllText(Application.persistentDataPath + "/WinnerList.json");
-				_winners = JsonUtility.FromJson<Winners>(jsonString);
+				//jsonString = File.ReadAllText(Application.persistentDataPath + "/WinnerList.json");
+				//_winners = JsonUtility.FromJson<Winners>(jsonString);
+
+				//open the file to read...
+				using (StreamReader sr = File.OpenText(_myDataLocation + "/WinnerList.json"))
+				{
+					//string jsonString;
+					while ((jsonString = sr.ReadLine()) != null)
+					{
+						_winners = JsonUtility.FromJson<Winners>(jsonString);
+					}
+				}
 			}
 			else
 			{
 				Debug.Log("No Saved List Found!");
-				File.Create(_myDataLocation + "/WinnerList.json");
 
 			}
 		}

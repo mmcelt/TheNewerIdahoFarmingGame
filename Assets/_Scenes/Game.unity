@@ -215,6 +215,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &48134769
 Canvas:
   m_ObjectHideFlags: 0
@@ -1162,8 +1163,8 @@ MonoBehaviour:
   _hurtBack: {fileID: 8300000, guid: e99f192f7267e8f46aa93a4278548421, type: 3}
   _farmingLikeAnIdiot: {fileID: 8300000, guid: 6194b1aef10b54445b46094afd845a98, type: 3}
   _shuffle: {fileID: 8300000, guid: 7ec66774afad0ec46aece3e5c56d5fee, type: 3}
-  _buttonClick: {fileID: 8300000, guid: 16218b869fb9dab4780f7dab5dac5863, type: 3}
-  _lifeAlteringButtonClick: {fileID: 8300000, guid: 74795d6b7ad14e04dae06a2b7924b700, type: 3}
+  _buttonClick: {fileID: 8300000, guid: 8627751a2041c4bb382df6944ffc3d4d, type: 3}
+  _lifeAlteringButtonClick: {fileID: 8300000, guid: 9b5a0d4adacf04e25b3e6275d9ea8c66, type: 3}
   _aSource: {fileID: 0}
 --- !u!82 &383173912
 AudioSource:
@@ -4758,7 +4759,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
+    m_Font: {fileID: 12800000, guid: 2756f87e12c3d434f94d95c03d37f5fe, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
