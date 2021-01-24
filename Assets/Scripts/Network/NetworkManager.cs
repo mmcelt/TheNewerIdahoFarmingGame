@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using System.IO;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -97,6 +98,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 		//int test = 20;
 		//Debug.Log("TEST: " + (test /= 10));
 		//Debug.Log(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData));
+		Debug.Log("Full Path: " + Path.GetFullPath("."));
+
 	}
 	#endregion
 

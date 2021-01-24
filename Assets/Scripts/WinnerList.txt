@@ -59,9 +59,7 @@ public class WinnerList : MonoBehaviour
 	void Start()
 	{
 		//PlayerPrefs.DeleteAll();
-		//_myDataLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/IFG";
-		_myDataLocation = Path.GetFullPath(".");
-		Debug.Log("Full Path: " + Path.GetFullPath("."));
+		_myDataLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "/IFG";
 
 		_uiManager = GameManager.Instance.uiManager;
 
@@ -75,13 +73,21 @@ public class WinnerList : MonoBehaviour
 
 	public void AddWinnerListEntry(string pName, string fName, int nw, int endGameNW, int nop, string[] runnersUpNames, string[] runnerUpFarmers, int[] runnerUpNetworkths)
 	{
+		//Debug.Log("IN ADD WINNER: " + pName + "," + fName + "," + nw + "," + runnersUpNames.Length);
+		//if (nop > 1)
+		//{
+		//	for (int i=0; i<nop; i++)
+		//		Debug.Log("Runner up: " + runnersUpNames[i]);
+		//}
+
+		//string testDate = "11/21/2019";
 		//create WinnerListEntry
 		WinnerEntry winnerListEntry = new WinnerEntry
 		{
 			date = System.DateTime.Now.ToShortDateString(),
 			//date = testDate,
 			playerName = pName,
-			farmerName = fName,
+			farmerName=fName,
 			networth = nw,
 			endGameNetworth = endGameNW,
 			numberOfPlayers = nop,
@@ -89,6 +95,10 @@ public class WinnerList : MonoBehaviour
 			rFarmerNames = runnerUpFarmers,
 			rNetworths = runnerUpNetworkths
 		};
+		//load saved data...
+		//string jsonString = PlayerPrefs.GetString("WinnerList");
+		//_winners = JsonUtility.FromJson<Winners>(jsonString);
+
 		//load saved data...
 		if (File.Exists(_myDataLocation + "/WinnerList.json"))
 		{
@@ -115,6 +125,11 @@ public class WinnerList : MonoBehaviour
 		_winners.winnerListEntryList.Add(winnerListEntry);
 
 		//save updated Winners
+		//string json = JsonUtility.ToJson(_winners);
+		//PlayerPrefs.SetString("WinnerList", json);
+		//PlayerPrefs.Save();
+
+		//save updated Winners
 		string json = JsonUtility.ToJson(_winners);
 		File.WriteAllText(_myDataLocation, json);
 
@@ -135,7 +150,6 @@ public class WinnerList : MonoBehaviour
 		else
 		{
 			Debug.LogWarning("NO DAMN LIST PRESENT");
-			File.Create(_myDataLocation + "/WinnerList.json");
 			return;
 		}
 
@@ -229,6 +243,20 @@ public class WinnerList : MonoBehaviour
 			File.Copy(_myDataLocation + "/MasterList.txt", _myDataLocation + "/WinnerList.json", true);
 		}
 		PopulateAndShowWinnersList();
+		////delete the existing WinnersList.txt file...
+		//if (File.Exists(Application.persistentDataPath + "/WinnerList.txt"))
+		//{
+		//	//Debug.Log(Application.persistentDataPath);
+		//	File.Delete(Application.persistentDataPath + "/WinnerList.txt");
+		//}
+
+		//AddWinnerListEntry("Old Yeller", IFG.Kay, 408470, 400000, 2, new string[] { "Wicket" }, new string[] { IFG.Ron }, new int[] { 177070 });
+		//AddWinnerListEntry("Big Red", IFG.Kay, 356605, 350000, 3, new string[] { "Weeto Grail", "Detective Mittens The Crime Solving Cat" }, new string[] { IFG.Ron, IFG.Jerry }, new int[] { 340780, 293920 });
+		//AddWinnerListEntry("Red", IFG.Mike, 365010, 350000, 2, new string[] { "Chewie" }, new string[] { IFG.Ron }, new int[] { 323070 });
+		//AddWinnerListEntry("Buddy Boogar", IFG.Ron, 437780, 400000, 2, new string[] { "Big Red" }, new string[] { IFG.Kay }, new int[] { 398960 });
+		//AddWinnerListEntry("Buddy And Ginger", IFG.Ron, 403390, 400000, 2, new string[] { "Boss" }, new string[] { IFG.Becky }, new int[] { 230820 });
+		//AddWinnerListEntry("Becky", IFG.Becky, 400270, 400000, 2, new string[] { "Little Chewie" }, new string[] { IFG.Ron }, new int[] { 298850 });
+		//AddWinnerListEntry("Din Dor", IFG.Ron, 405310, 400000, 2, new string[] { "Blackie" }, new string[] { IFG.Ric }, new int[] { 346380 });
 	}
 
 	public void MakeTheMasterList()
@@ -259,21 +287,19 @@ public class WinnerList : MonoBehaviour
 			else
 			{
 				Debug.Log("No Saved List Found!");
-				File.Create(_myDataLocation + "/WinnerList.json");
-
 			}
 		}
 	}
 	#endregion
 }
 
-class Winners  //High Scores
+class Winners	//High Scores
 {
 	public List<WinnerEntry> winnerListEntryList;
 }
 
 [System.Serializable]
-class WinnerEntry //HighscoreEntry
+class WinnerEntry	//HighscoreEntry
 {
 	//winner & game data
 	public string date;

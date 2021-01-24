@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UncleCheesterListView : ListView
+public class WinnersListCustomButton : CustomButton
 {	
 	#region Fields & Properties
 

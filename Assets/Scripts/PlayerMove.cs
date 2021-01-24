@@ -116,7 +116,7 @@ public class PlayerMove : MonoBehaviourPun
 	public void InitMove(int die)
 	{
 		_die = die;
-		//_die = 50;	//TESTING
+		//_die = 25;	//TESTING
 
 #if UNITY_EDITOR	//TODO: UNCOMMENT THIS WHEN TESTING COMPLETE
 

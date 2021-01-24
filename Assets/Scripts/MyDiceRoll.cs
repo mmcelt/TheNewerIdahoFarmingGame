@@ -28,15 +28,15 @@ public class MyDiceRoll : MonoBehaviour
 
 	public bool isOtherRoll;
 	public bool isHarvestRoll;
-	public bool isTetonDamRoll;			//used as a roll type designator
-	public bool tetonDamRollComplete;	//used to coroutine wait point
+	public bool isTetonDamRoll;         //used as a roll type designator
+	public bool tetonDamRollComplete;   //used to coroutine wait point
 
 	RollStarte state;
-	Animator anm;
-	Rigidbody2D rb;
-	AudioSource ac;
-	Vector3 defPos;
-	bool toRoll;
+	Animator _anim;
+	Rigidbody2D _rb;
+	AudioSource _aSource;
+	Vector3 _defPos;
+	bool _toRoll;
 
 	SpriteRenderer _sprite;
 	PlayerMove _pMove;
@@ -44,50 +44,49 @@ public class MyDiceRoll : MonoBehaviour
 	PlayerManager _pManager;
 	HarvestManager _hManager;
 
-	Button harvestOkButton;
-	Text harvestOkButtonText;
-	Button harvestRollButton;
-	TextMeshProUGUI tetonDamMessageText;
+	Button _harvestOkButton;
+	Text _harvestOkButtonText;
+	Button _harvestRollButton;
+	TextMeshProUGUI _tetonDamMessageText;
 
-	// Use this for initialization
 	void Start()
 	{
-		anm = GetComponent<Animator>();
-		ac = GetComponent<AudioSource>();
-		rb = GetComponent<Rigidbody2D>();
+		_anim = GetComponent<Animator>();
+		_aSource = GetComponent<AudioSource>();
+		_rb = GetComponent<Rigidbody2D>();
 
 		_uiManager = GameManager.Instance.uiManager;
-		harvestRollButton = _uiManager._harvestRollButton;
-		harvestOkButton = _uiManager._harvestOk1Button;
+		_harvestRollButton = _uiManager._harvestRollButton;
+		_harvestOkButton = _uiManager._harvestOk1Button;
 		buttonTxt = _uiManager._rollButton.GetComponentInChildren<Text>();
-		harvestRollButton = _uiManager._harvestRollButton;
-		harvestOkButtonText = _uiManager._harvestOk1Button.GetComponentInChildren<Text>();
-		tetonDamMessageText = _uiManager._tetonMessageText;
+		_harvestRollButton = _uiManager._harvestRollButton;
+		_harvestOkButtonText = _uiManager._harvestOk1Button.GetComponentInChildren<Text>();
+		_tetonDamMessageText = _uiManager._tetonMessageText;
 
 		_sprite = GetComponent<SpriteRenderer>();
 		_pMove = GameManager.Instance.myFarmer.GetComponent<PlayerMove>();
 		_pManager = GameManager.Instance.myFarmer.GetComponent<PlayerManager>();
 		_hManager = GameManager.Instance.hManager;
 
-		rb.isKinematic = true;
-		defPos = transform.position;
-		toRoll = false;
+		_rb.isKinematic = true;
+		_defPos = transform.position;
+		_toRoll = false;
 		StartCoroutine(diceRollCo());
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		//Debug.Log(rb.velocity.sqrMagnitude);
-		if(ac != null)
-			ac.Play();
+		if (_aSource != null)
+			_aSource.Play();
 
-		if(rb != null)
+		if (_rb != null)
 		{
-			if (rb.velocity.sqrMagnitude < stopRollAmount)  //10
+			if (_rb.velocity.sqrMagnitude < stopRollAmount)  //10
 			{
 				state = RollStarte.Stop;
 			}
-			if (rb.velocity.sqrMagnitude < startMoveAmount) //0.25f/4.5f
+			if (_rb.velocity.sqrMagnitude < startMoveAmount) //0.25f/4.5f
 			{
 				StartCoroutine(StartMove());
 			}
@@ -112,19 +111,19 @@ public class MyDiceRoll : MonoBehaviour
 
 		while (true)
 		{
-			if(!isOtherRoll)
+			if (!isOtherRoll)
 				buttonTxt.text = "ROLL";
 			if (isHarvestRoll)
 			{
-				harvestOkButtonText.text = "";
-				harvestOkButton.interactable = false;
+				_harvestOkButtonText.text = "";
+				_harvestOkButton.interactable = false;
 			}
 
-			rb.isKinematic = true;
-			transform.position = defPos;
+			_rb.isKinematic = true;
+			transform.position = _defPos;
 			state = RollStarte.Stop;
 			m_pip = -1;
-			while (!toRoll)
+			while (!_toRoll)
 			{
 				yield return null;
 			}
@@ -135,9 +134,9 @@ public class MyDiceRoll : MonoBehaviour
 				_sprite.enabled = true;
 			}
 
-			rb.isKinematic = false;
-			rb.velocity = Vector2.zero;
-			rb.AddForce(rollVec);
+			_rb.isKinematic = false;
+			_rb.velocity = Vector2.zero;
+			_rb.AddForce(rollVec);
 
 			Roll();
 
@@ -154,35 +153,35 @@ public class MyDiceRoll : MonoBehaviour
 				buttonTxt.text = Pip.ToString();
 			else if (isHarvestRoll)
 			{
-				harvestOkButtonText.text = Pip.ToString();
-				harvestOkButton.interactable = true;
+				_harvestOkButtonText.text = Pip.ToString();
+				_harvestOkButton.interactable = true;
 
 				//send harvest roll msg to others
 				_hManager._dieRoll = Pip;
-				//SendHarvestRollMessage();	//MOVE TO HARVEST MANAGER
+				SendHarvestDieRollMessage();  //CHANGE TO JUST SENDING DIE ROLL TO OTHERS MSG
 				_hManager._rollButtonPressed = true;
 				yield return new WaitForSeconds(1.2f);
-				harvestOkButtonText.text = "OK";
+				_harvestOkButtonText.text = "OK";
 			}
 			else if (isTetonDamRoll)
 			{
 				tetonDamRollComplete = true;
 			}
 
-			toRoll = false;
-			while (!toRoll)
+			_toRoll = false;
+			while (!_toRoll)
 			{
 				yield return null;
 			}
 			buttonTxt.text = "ROLL";
-			harvestOkButtonText.text = "OK";
+			_harvestOkButtonText.text = "OK";
 		}
 	}
 
 	public void OnRollButton()
 	{
-		toRoll = true;
-		ac.PlayOneShot(_dieRoll);
+		_toRoll = true;
+		_aSource.PlayOneShot(_dieRoll);
 	}
 
 	/// <summary>
@@ -190,7 +189,7 @@ public class MyDiceRoll : MonoBehaviour
 	/// </summary>
 	public void Roll()
 	{
-		anm.Play("roll");
+		_anim.Play("roll");
 	}
 
 	/// <summary>
@@ -200,7 +199,7 @@ public class MyDiceRoll : MonoBehaviour
 	public void SetPip(int _pip)
 	{
 		m_pip = Mathf.Clamp(_pip, 1, 7);
-		anm.Play("to" + m_pip.ToString());
+		_anim.Play("to" + m_pip.ToString());
 	}
 
 	Color ChoosePlayerDieTint()
@@ -237,10 +236,12 @@ public class MyDiceRoll : MonoBehaviour
 		return dieTint;
 	}
 
-	void SendHarvestRollMessage()
+	void SendHarvestDieRollMessage()
 	{
-		//data - nickname, farmerName, die
-		object[] sndData = new object[] { PhotonNetwork.LocalPlayer.NickName, GameManager.Instance.myFarmerName, Pip };
+		string commodity = GetCommodity();
+
+		//data - nickname, farmerName, die, commodity
+		object[] sndData = new object[] { PhotonNetwork.LocalPlayer.NickName, GameManager.Instance.myFarmerName, Pip, commodity };
 		//event options
 		RaiseEventOptions eventOptions = new RaiseEventOptions()
 		{
@@ -251,5 +252,31 @@ public class MyDiceRoll : MonoBehaviour
 		SendOptions sendOptions = new SendOptions() { Reliability = true };
 		//fire the event to the UIManagers
 		PhotonNetwork.RaiseEvent((byte)RaiseEventCodes.Harvest_Roll_Message_Event_Code, sndData, eventOptions, sendOptions);
+	}
+
+	string GetCommodity()
+	{
+		if (_pMove._currentSpace >= 19 && _pMove._currentSpace <= 22)
+			return "Hay";
+		else if (_pMove._currentSpace >= 23 && _pMove._currentSpace <= 25)
+			return "Cherries";
+		else if (_pMove._currentSpace >= 26 && _pMove._currentSpace <= 28)
+			return "Hay";
+		else if (_pMove._currentSpace >= 29 && _pMove._currentSpace <= 33)
+			return "Wheat";
+		else if (_pMove._currentSpace >= 34 && _pMove._currentSpace <= 35)
+			return "Hay";
+		else if (_pMove._currentSpace >= 36 && _pMove._currentSpace <= 39)
+			return "Livestock";
+		else if (_pMove._currentSpace == 40)
+			return "Hay";
+		else if (_pMove._currentSpace >= 41 && _pMove._currentSpace <= 43)
+			return "Spuds";
+		else if (_pMove._currentSpace >= 44 && _pMove._currentSpace <= 46)
+			return "Apples";
+		else if (_pMove._currentSpace >= 47 && _pMove._currentSpace <= 49)
+			return "Corn";
+		else
+			return "Crap";
 	}
 }

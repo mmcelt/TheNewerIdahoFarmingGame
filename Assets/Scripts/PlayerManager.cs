@@ -824,7 +824,7 @@ public class PlayerManager : MonoBehaviourPun
 			_uiManager._otbCardText.GetComponent<Outline>().enabled = false;
 
 		_uiManager._otbCardText.text = card.description;
-		_uiManager._otbTotalCostText.text = "Total Cost: " + card.totalCost;
+		_uiManager._otbTotalCostText.text = "Total Cost: $" + card.totalCost;
 
 		_uiManager._otbPanel.SetActive(true);
 		_uiManager._boardSpaceModalPanel.SetActive(true);

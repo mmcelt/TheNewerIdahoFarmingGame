@@ -219,7 +219,7 @@ public class HarvestManager : MonoBehaviour
 
 		yield return new WaitUntil(() => _okButton1Pressed);
 		//Debug.Log("OK1 Pressed");
-		SendHarvestRollMessage();
+		//SendHarvestRollMessage();	//TESTING
 
 		//_dieRoll = 1;	//TESTING
 

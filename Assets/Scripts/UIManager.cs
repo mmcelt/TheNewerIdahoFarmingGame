@@ -1545,6 +1545,7 @@ public class UIManager : MonoBehaviourPun
 		_downPaymentInput.text = "";
 		_downPaymentInput.placeholder.GetComponent<Text>().text = "Enter your Downpayment...";
 		_sellOtbToBankButton.interactable = false;
+		_sellOtbToPlayerButton.interactable = false;
 		_buyOptionButton.interactable = false;
 		_payInFullButton.interactable = false;
 		_stopBuying = false;
