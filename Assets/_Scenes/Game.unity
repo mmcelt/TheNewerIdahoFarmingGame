@@ -1165,6 +1165,8 @@ MonoBehaviour:
   _shuffle: {fileID: 8300000, guid: 7ec66774afad0ec46aece3e5c56d5fee, type: 3}
   _buttonClick: {fileID: 8300000, guid: 8627751a2041c4bb382df6944ffc3d4d, type: 3}
   _lifeAlteringButtonClick: {fileID: 8300000, guid: 9b5a0d4adacf04e25b3e6275d9ea8c66, type: 3}
+  _zoomIn: {fileID: 8300000, guid: 085eb2e6d4a854a02af6e59470688e66, type: 3}
+  _zoomOut: {fileID: 8300000, guid: 137def138737f44839a86a8ae7b7f865, type: 3}
   _aSource: {fileID: 0}
 --- !u!82 &383173912
 AudioSource:
@@ -1177,7 +1179,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

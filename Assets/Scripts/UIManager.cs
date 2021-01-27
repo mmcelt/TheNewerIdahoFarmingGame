@@ -365,6 +365,7 @@ public class UIManager : MonoBehaviourPun
 		if (!_actionsPanel.activeInHierarchy)
 		{
 			_actionsPanel.SetActive(true);
+			AudioManager.Instance.PlaySound(AudioManager.Instance._zoomIn);
 			_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayForward();
 			InitializeTheActionsPanel();
 		}
@@ -1328,6 +1329,8 @@ public class UIManager : MonoBehaviourPun
 		StopCoroutine("SellOtbRoutine");
 		StopCoroutine("BuyOptionRoutine");
 		ResetOtbListPanel();
+
+		AudioManager.Instance.PlaySound(AudioManager.Instance._zoomOut);
 		_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 	}
 

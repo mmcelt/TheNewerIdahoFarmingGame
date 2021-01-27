@@ -477,6 +477,7 @@ public class BoardManager : MonoBehaviour
 		_modalPanel.SetActive(true);
 
 		//play open animation...
+		AudioManager.Instance.PlaySound(AudioManager.Instance._zoomIn);
 		_boardSpacePanel.GetComponent<DOTweenAnimation>().DOPlayForward();
 		_boardSpacePanel.transform.DOLocalMove(_endPosition, 0.4f);
 
@@ -494,6 +495,7 @@ public class BoardManager : MonoBehaviour
 		_isOkToCloseBoardSpacePanel = false;
 
 		//play closing animation
+		AudioManager.Instance.PlaySound(AudioManager.Instance._zoomOut);
 		_boardSpacePanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 		_boardSpacePanel.transform.DOLocalMove(_startPosition, 0.4f);
 		_modalPanel.SetActive(false);

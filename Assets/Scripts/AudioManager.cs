@@ -29,6 +29,8 @@ public class AudioManager : MonoBehaviour
 	[Header("UI Sounds")]
 	public AudioClip _buttonClick;
 	public AudioClip _lifeAlteringButtonClick;
+	public AudioClip _zoomIn;
+	public AudioClip _zoomOut;
 
 	[HideInInspector] public AudioSource _aSource;
 

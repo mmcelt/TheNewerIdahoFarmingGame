@@ -829,6 +829,7 @@ public class PlayerManager : MonoBehaviourPun
 		_uiManager._otbPanel.SetActive(true);
 		_uiManager._boardSpaceModalPanel.SetActive(true);
 		//play open animations...
+		//AudioManager.Instance.PlaySound(AudioManager.Instance._zoomIn);
 		_uiManager._otbPanel.GetComponent<DOTweenAnimation>().DOPlayForward();  //scale up
 		_uiManager._otbPanel.transform.DOLocalMove(new Vector3(0, -33), 0.5f);  //move to center
 
@@ -837,6 +838,7 @@ public class PlayerManager : MonoBehaviourPun
 		_isOkToCloseOtbPanel = false;
 		_uiManager._boardSpaceModalPanel.SetActive(false);
 		//play the closing animations...
+		AudioManager.Instance.PlaySound(AudioManager.Instance._zoomOut);
 		_uiManager._otbPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();   //scale down
 		_uiManager._otbPanel.transform.DOLocalMove(new Vector3(-784, -386), 0.5f);
 		//panel set inactive in OnRewind() on the animator.
@@ -936,10 +938,12 @@ public class PlayerManager : MonoBehaviourPun
 
 		_uiManager._ffPanel.SetActive(true);
 		_uiManager._boardSpaceModalPanel.SetActive(true);
+		AudioManager.Instance.PlaySound(AudioManager.Instance._zoomIn);
 		_uiManager._ffPanel.GetComponent<DOTweenAnimation>().DOPlayForward();
 		_uiManager._ffPanel.transform.DOLocalMove(new Vector3(0, -33), 0.5f);
 		yield return new WaitWhile(() => !_isOkToCloseFfPanel);
 		_uiManager._boardSpaceModalPanel.SetActive(false);
+		AudioManager.Instance.PlaySound(AudioManager.Instance._zoomOut);
 		_uiManager._ffPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 		_uiManager._ffPanel.transform.DOLocalMove(new Vector3(638, -352), 0.5f);
 		yield return new WaitForSeconds(0.5f);

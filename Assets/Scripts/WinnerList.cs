@@ -108,12 +108,12 @@ public class WinnerList : MonoBehaviour
 		else
 		{
 			Debug.Log("No Saved List Found!");
-			//create the file...
-			using(StreamWriter sw = File.CreateText(_myDataLocation + "/WinnerList.json"))
-			{
-				string jsonString = "";
-				sw.WriteLine(jsonString);
-			}
+			////create the file...
+			//using(StreamWriter sw = File.CreateText(_myDataLocation + "/WinnerList.json"))
+			//{
+			//	string jsonString = "";
+			//	sw.WriteLine(jsonString);
+			//}
 		}
 
 		if (_winners == null)
@@ -166,7 +166,7 @@ public class WinnerList : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogWarning("NO DAMN LIST PRESENT");
+			Debug.LogWarning("NO DAMN LIST PRESENT!");
 			//File.Create(_myDataLocation + "/WinnerList.json");
 			return;
 		}
@@ -330,7 +330,6 @@ public class WinnerList : MonoBehaviour
 			else
 			{
 				Debug.Log("No Saved List Found!");
-
 			}
 		}
 	}

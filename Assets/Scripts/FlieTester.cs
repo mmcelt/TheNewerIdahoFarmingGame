@@ -22,11 +22,6 @@ public class FlieTester : MonoBehaviour
 	{
 		path = Application.persistentDataPath;
 	}
-	
-	void Update() 
-	{
-		
-	}
 	#endregion
 
 	#region Public Methods
