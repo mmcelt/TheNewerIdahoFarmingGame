@@ -101,6 +101,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 		string location = Application.persistentDataPath;
 		Debug.Log(location);
+		Debug.Log(Screen.currentResolution);
 	}
 	#endregion
 

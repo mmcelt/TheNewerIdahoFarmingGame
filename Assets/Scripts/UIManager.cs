@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviourPun
 	[SerializeField] GameObject _resetWinnersListButton;
 	[SerializeField] GameObject _makeTheMasterListButton;
 	[SerializeField] Text _secondChanceWarningText;
+	[SerializeField] Text _screenResText;
 
 	[Header("Sell OTB to Player Panel")]
 	[SerializeField] GameObject _sellOtbToPlayerPanel;
@@ -768,6 +769,26 @@ public class UIManager : MonoBehaviourPun
 			_optionsWarningPanelModalPanel.SetActive(true);
 			_warningGiven = true;
 			StartCoroutine(WarningPanelRoutine("Quit"));
+		}
+	}
+
+	public void OnChangeScreenResolutionSliderValueChanged(float value)
+	{
+		switch(value)
+		{
+			case 0:
+				Screen.SetResolution(1366, 768, false);
+				_screenResText.text = "1366x768";
+				break;
+			case 1:
+				Screen.SetResolution(1600, 900, false);
+				break;
+			case 2:
+				Screen.SetResolution(1920, 1080, false);
+				break;
+			case 3:
+				Screen.SetResolution(2560, 1440, false);
+				break;
 		}
 	}
 
