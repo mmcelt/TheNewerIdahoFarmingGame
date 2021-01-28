@@ -56,11 +56,11 @@ public class RemotePlayerUpdater : MonoBehaviourPun
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			yield return new WaitForSeconds(0.5f);
-			//Debug.Log("NOP in URPD: " + GameManager.Instance._numberOfPlayers);
+			Debug.Log("NOP in URPD: " + GameManager.Instance._numberOfPlayers);
 			photonView.RPC(nameof(RpcUpdateTheData), RpcTarget.Others, _pManager._pCash, _pManager._pNotes, _pManager._myOtbCount, _pManager._pNetworth);
+			yield return new WaitForSeconds(0.5f);
 		}
-		//StartCoroutine(UpdateRemotePlayerData());
+		//StartCoroutine(UpdateRemotePlayerDataDataRoutine());
 		_coroutineStopped = true;
 	}
 

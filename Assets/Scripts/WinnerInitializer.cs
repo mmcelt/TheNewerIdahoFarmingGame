@@ -19,7 +19,8 @@ public class WinnerInitializer : MonoBehaviour
 
 	#region Private Fields
 
-	int _nop;
+	int _nop, _endingNetworth, _winningNetworth;
+	string _networthString;
 	string[] _ruPlayers, _ruFarmers;
 	int[] _ruNetworths;
 
@@ -42,7 +43,8 @@ public class WinnerInitializer : MonoBehaviour
 		_nicknameText.color = GameManager.Instance.uiManager.SelectFontColorForFarmer(farmerName);
 		_nopText.text = nop.ToString();
 		_nop = nop;
-		_winningNetworthText.text = networth.ToString("C0");
+		_endingNetworth = networth;
+		_winningNetworthText.text = _endingNetworth.ToString("C0");
 
 		if (gameEnd > 500)
 			_gameConditionText.text = gameEnd.ToString("C0");
@@ -63,17 +65,20 @@ public class WinnerInitializer : MonoBehaviour
 
 	public void OnWinnerButtonClicked()
 	{
-		char[] charactersToTrim = { '$' };
-		string networthString = _gameConditionText.text;
+		if(!_gameConditionText.text.EndsWith(" Min"))
+		{
+			char[] charactersToTrim = { '$' };
+			_networthString = _gameConditionText.text;
 
-		networthString = networthString.Trim(charactersToTrim);
-		networthString = networthString.Replace(",", "");
-		//Debug.Log(networthString);
-		int endingNetworth = int.Parse(networthString);
-		//Debug.Log("NW: " + endingNetworth);
+			_networthString = _networthString.Trim(charactersToTrim);
+			_networthString = _networthString.Replace(",", "");
+			//Debug.Log(networthString);
+			_endingNetworth = int.Parse(_networthString);
+		}
 
 		WinnerList.Instance._runnersUpPanel.SetActive(true);
 		List<GameObject> runnerUpPrefabs = GameObject.FindGameObjectsWithTag("RunnerUpPrefab").ToList();
+
 		foreach (GameObject prefab in runnerUpPrefabs)
 			Destroy(prefab);
 
@@ -91,7 +96,7 @@ public class WinnerInitializer : MonoBehaviour
 					ruGO.transform.Find("Name Text").GetComponent<Outline>().enabled = false;
 
 				ruGO.transform.Find("Networth Text").GetComponent<Text>().text = _ruNetworths[i].ToString("C0");
-				ruGO.transform.Find("Networth Text").GetComponent<Text>().color = SetRunnerUpNetworthColor(_ruNetworths[i], endingNetworth);
+				ruGO.transform.Find("Networth Text").GetComponent<Text>().color = SetRunnerUpNetworthColor(_ruNetworths[i], _endingNetworth);
 
 				if (ruGO.transform.Find("Networth Text").GetComponent<Text>().color != Color.black)
 					ruGO.transform.Find("Networth Text").GetComponent<Outline>().enabled = true;

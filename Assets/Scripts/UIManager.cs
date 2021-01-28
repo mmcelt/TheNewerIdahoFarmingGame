@@ -297,7 +297,7 @@ public class UIManager : MonoBehaviourPun
 		}
 		_gameTyeText.text = GameManager.Instance._gameMode;
 
-		//StartCoroutine("UpdateUIRoutine");
+		StartCoroutine("UpdateUIRoutine");
 
 	}
 
@@ -1036,25 +1036,34 @@ public class UIManager : MonoBehaviourPun
 			_playerNotesText.color = Color.black;
 
 		_networthText.text = _pManager._pNetworth.ToString("c0");
-		if (_pManager._pNetworth >= GameManager.Instance._networthGameAmount * 0.25f && _pManager._pNetworth < GameManager.Instance._networthGameAmount * 0.5f)
+
+		if (GameManager.Instance._timedGameLength <= 0.0f)
 		{
-			_networthText.font = _outlinedFont;
-			_networthText.color = Color.green;
-		}
-		else if(_pManager._pNetworth >= GameManager.Instance._networthGameAmount * 0.5f && _pManager._pNetworth < GameManager.Instance._networthGameAmount * 0.75f)
-		{
-			_networthText.font = _outlinedFont;
-			_networthText.color = Color.yellow;
-		}
-		else if (_pManager._pNetworth >= GameManager.Instance._networthGameAmount * 0.75f && _pManager._pNetworth < GameManager.Instance._networthGameAmount * 0.875f)
-		{
-			_networthText.font = _outlinedFont;
-			_networthText.color = IFG.Orange;
-		}
-		else if (_pManager._pNetworth >= GameManager.Instance._networthGameAmount * 0.875f)
-		{
-			_networthText.font = _outlinedFont;
-			_networthText.color = Color.red;
+			if (_pManager._pNetworth >= GameManager.Instance._networthGameAmount * 0.25f && _pManager._pNetworth < GameManager.Instance._networthGameAmount * 0.5f)
+			{
+				_networthText.font = _outlinedFont;
+				_networthText.color = Color.green;
+			}
+			else if (_pManager._pNetworth >= GameManager.Instance._networthGameAmount * 0.5f && _pManager._pNetworth < GameManager.Instance._networthGameAmount * 0.75f)
+			{
+				_networthText.font = _outlinedFont;
+				_networthText.color = Color.yellow;
+			}
+			else if (_pManager._pNetworth >= GameManager.Instance._networthGameAmount * 0.75f && _pManager._pNetworth < GameManager.Instance._networthGameAmount * 0.875f)
+			{
+				_networthText.font = _outlinedFont;
+				_networthText.color = IFG.Orange;
+			}
+			else if (_pManager._pNetworth >= GameManager.Instance._networthGameAmount * 0.875f)
+			{
+				_networthText.font = _outlinedFont;
+				_networthText.color = Color.red;
+			}
+			else
+			{
+				_networthText.font = _normalFont;
+				_networthText.color = Color.black;
+			}
 		}
 		else
 		{
@@ -1084,8 +1093,7 @@ public class UIManager : MonoBehaviourPun
 			_hayDoubledCounterText.text = "x" + _pManager._pHayDoubledCounter;
 		}
 
-		//_hayDoubledCounterText.text = "x" + _pManager._hayDoubledCounter;
-
+		//sticker area
 		if (_pManager._pCornDoubled)
 			_grainImage.sprite = _grainDoubled;
 		else
@@ -1359,10 +1367,10 @@ public class UIManager : MonoBehaviourPun
 	void StartRemotePlayerUpdating()
 	{
 		if (GameManager.Instance._numberOfPlayers > 1)
-			StartCoroutine("UpdateRemotePlayerInfo");
+			StartCoroutine(nameof(UpdateRemotePlayerInfoRoutine));
 	}
 
-	IEnumerator UpdateRemotePlayerInfo()
+	IEnumerator UpdateRemotePlayerInfoRoutine()
 	{
 		//update the remote players info...
 		for (int i = 0; i < 9; i++)
@@ -1386,12 +1394,8 @@ public class UIManager : MonoBehaviourPun
 				}
 			}
 
-			yield return new WaitForSeconds(1.0f);
+			yield return new WaitForSeconds(0.5f);
 		}
-		//if (_remotePlayerNameTexts[0].text != "")
-		//	StopCoroutine("UpdateRemotePlayerInfo");
-
-		//StartCoroutine("UpdateRemotePlayerInfo");
 	}
 
 	void InitializeTheActionsPanel()
