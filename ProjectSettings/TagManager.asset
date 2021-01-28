@@ -19,6 +19,11 @@ TagManager:
   - SpudSticker
   - Harvester
   - Tractor
+  - RM_Black_Bars
+  - RM_Canvas
+  - RM_Background
+  - GUI
+  - Space Info
   layers:
   - Default
   - TransparentFX
@@ -26,7 +31,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Space Info
   - 
   - 
   - 
