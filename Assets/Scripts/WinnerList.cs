@@ -314,18 +314,18 @@ public class WinnerList : MonoBehaviour
 
 			if (File.Exists(Application.persistentDataPath + "/WinnerList.json"))
 			{
-				//jsonString = File.ReadAllText(Application.persistentDataPath + "/WinnerList.json");
-				//_winners = JsonUtility.FromJson<Winners>(jsonString);
-
 				//open the file to read...
-				using (StreamReader sr = File.OpenText(_myDataLocation + "/WinnerList.json"))
-				{
-					//string jsonString;
-					while ((jsonString = sr.ReadLine()) != null)
-					{
-						_winners = JsonUtility.FromJson<Winners>(jsonString);
-					}
-				}
+				jsonString = File.ReadAllText(Application.persistentDataPath + "/WinnerList.json");
+				_winners = JsonUtility.FromJson<Winners>(jsonString);
+
+				//using (StreamReader sr = File.OpenText(_myDataLocation + "/WinnerList.json"))
+				//{
+				//	//string jsonString;
+				//	while ((jsonString = sr.ReadLine()) != null)
+				//	{
+				//		_winners = JsonUtility.FromJson<Winners>(jsonString);
+				//	}
+				//}
 			}
 			else
 			{
