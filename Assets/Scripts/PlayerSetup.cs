@@ -12,6 +12,7 @@ public class PlayerSetup : MonoBehaviourPun
 	[SerializeField] GameObject uiPrefab;
 	[SerializeField] GameObject diePrefab;
 	[SerializeField] GameObject chatManagerPrefab;
+	[SerializeField] Texture2D _cursor;
 
 	#endregion
 
@@ -40,7 +41,7 @@ public class PlayerSetup : MonoBehaviourPun
 			GameObject die = Instantiate(diePrefab);
 			GameManager.Instance.myDiceRoll = die.GetComponentInChildren<MyDiceRoll>();
 			GameManager.Instance.myFarmer = gameObject;
-			//instantiate the Player's Chat Manager
+			Cursor.SetCursor(_cursor, new Vector2(40f, 40f), CursorMode.ForceSoftware);
 			if(PhotonNetwork.PlayerList.Length > 1)
 			{
 				GameObject myChatManager = Instantiate(chatManagerPrefab);
