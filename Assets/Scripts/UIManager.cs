@@ -322,6 +322,7 @@ public class UIManager : MonoBehaviourPun
 		{
 			_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 			ResetOtbListPanel();
+			ResetActionPanel();
 		}
 		//play click sound
 		AudioManager.Instance.PlaySound(AudioManager.Instance._buttonClick);
@@ -337,6 +338,7 @@ public class UIManager : MonoBehaviourPun
 		{
 			_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 			ResetOtbListPanel();
+			ResetActionPanel();
 		}
 
 		//play click sound

@@ -24,11 +24,6 @@ public class GetSpaceInfo : MonoBehaviour
 
 	#region Unity Methods
 
-	void Start() 
-	{
-		
-	}
-	
 	void Update() 
 	{
 		if (Input.GetMouseButton(1) && !_panelShown)
