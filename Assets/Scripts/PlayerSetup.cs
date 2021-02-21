@@ -14,6 +14,8 @@ public class PlayerSetup : MonoBehaviourPun
 	[SerializeField] GameObject chatManagerPrefab;
 	[SerializeField] Texture2D _cursor;
 
+	[SerializeField] Vector2 _hotSpot;
+
 	#endregion
 
 	#region Private Fields / References
@@ -41,7 +43,8 @@ public class PlayerSetup : MonoBehaviourPun
 			GameObject die = Instantiate(diePrefab);
 			GameManager.Instance.myDiceRoll = die.GetComponentInChildren<MyDiceRoll>();
 			GameManager.Instance.myFarmer = gameObject;
-			Cursor.SetCursor(_cursor, new Vector2(40f, 40f), CursorMode.ForceSoftware);
+			//_hotSpot = new Vector2(40f, 41f);
+			Cursor.SetCursor(_cursor, new Vector2(_hotSpot.x, _hotSpot.y), CursorMode.ForceSoftware);
 			if(PhotonNetwork.PlayerList.Length > 1)
 			{
 				GameObject myChatManager = Instantiate(chatManagerPrefab);
