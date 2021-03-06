@@ -26280,8 +26280,8 @@ MonoBehaviour:
   _farmerSprites:
   - {fileID: 21300000, guid: 2322c1280219be0438bfd324159fa237, type: 3}
   - {fileID: 21300000, guid: 7915ab84fbc0bbc4f8d0c028e5a57294, type: 3}
-  - {fileID: 21300000, guid: 56caebfa2ac11644b9bc0b5758c6a9ad, type: 3}
   - {fileID: 21300000, guid: af9e7f17632ac1247be39953f9a46461, type: 3}
+  - {fileID: 21300000, guid: 56caebfa2ac11644b9bc0b5758c6a9ad, type: 3}
   - {fileID: 21300000, guid: 8caf563ef57a3314997d09d45463dbf3, type: 3}
   - {fileID: 21300000, guid: c40b464eed1f1954f9d8de369dcd25c5, type: 3}
   _headerSprite: {fileID: 21300000, guid: 8d7ea341900b68e47bf8e719483046fa, type: 3}
