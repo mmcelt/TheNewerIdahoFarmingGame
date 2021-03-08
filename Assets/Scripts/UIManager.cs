@@ -337,8 +337,8 @@ public class UIManager : MonoBehaviourPun
 		if (_actionsPanel.activeSelf)
 		{
 			_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
-			ResetOtbListPanel();
 			ResetActionPanel();
+			ResetOtbListPanel();
 		}
 
 		//play click sound
