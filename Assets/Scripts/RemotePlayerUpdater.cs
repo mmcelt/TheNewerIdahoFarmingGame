@@ -90,22 +90,22 @@ public class RemotePlayerUpdater : MonoBehaviourPun
 
 				_uiManager._otherPlayerOtbTexts[i].text = myOtbs.ToString();
 
-				if (myNetworth >= GameManager.Instance._networthGameAmount * 0.25f && myNetworth < GameManager.Instance._networthGameAmount * 0.5f)
+				if (myNetworth >= GameManager.Instance._networthGameAmount * 0.25f && myNetworth < GameManager.Instance._networthGameAmount * 0.5f && GameManager.Instance._gameMode == "Networth Game")
 				{
 					_uiManager._remotePlayerNetworthTexts[i].color = Color.green;
 					_uiManager._remotePlayerNetworthOutlines[i].enabled = true;
 				}
-				else if (myNetworth >= GameManager.Instance._networthGameAmount * 0.5f && myNetworth < GameManager.Instance._networthGameAmount * 0.75f)
+				else if (myNetworth >= GameManager.Instance._networthGameAmount * 0.5f && myNetworth < GameManager.Instance._networthGameAmount * 0.75f && GameManager.Instance._gameMode == "Networth Game")
 				{
 					_uiManager._remotePlayerNetworthTexts[i].color = Color.yellow;
 					_uiManager._remotePlayerNetworthOutlines[i].enabled = true;
 				}
-				else if (myNetworth >= GameManager.Instance._networthGameAmount * 0.75f && myNetworth < GameManager.Instance._networthGameAmount * 0.875f)
+				else if (myNetworth >= GameManager.Instance._networthGameAmount * 0.75f && myNetworth < GameManager.Instance._networthGameAmount * 0.875f && GameManager.Instance._gameMode == "Networth Game")
 				{
 					_uiManager._remotePlayerNetworthTexts[i].color = IFG.Orange;
 					_uiManager._remotePlayerNetworthOutlines[i].enabled = true;
 				}
-				else if (myNetworth >= GameManager.Instance._networthGameAmount * 0.875f)
+				else if (myNetworth >= GameManager.Instance._networthGameAmount * 0.875f && GameManager.Instance._gameMode == "Networth Game")
 				{
 					_uiManager._remotePlayerNetworthTexts[i].color = Color.red;
 					_uiManager._remotePlayerNetworthOutlines[i].enabled = true;
