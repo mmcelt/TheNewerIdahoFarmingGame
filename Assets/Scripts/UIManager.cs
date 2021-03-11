@@ -1615,7 +1615,7 @@ public class UIManager : MonoBehaviourPun
 		_completeModalPanel.SetActive(true);
 		_sellOtbToPlayerPanel.SetActive(true);
 		_sellOtbToPlayerMessageText.text = "You are selling " + _selectedCard.summary;
-		_sellOtbToPlayerMessageText.text += "\n\nMinimum Sale price is: " + GetSalePrice().ToString("c0");
+		_sellOtbToPlayerMessageText.text += "\n\nRecomended Sale price is: " + GetSalePrice().ToString("c0");
 		PopulateDropdown(_playerSelectionDropdown.name);
 
 		yield return new WaitWhile(() => _sellOtbToPlayerPanel.activeSelf);

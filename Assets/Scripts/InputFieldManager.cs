@@ -128,7 +128,7 @@ public class InputFieldManager : MonoBehaviour
 
 				_uiManager._minSalePrice = _uiManager.GetSalePrice();
 
-				if (amount >= _uiManager._minSalePrice)
+				if (amount >= /*_uiManager._minSalePrice*/ 0)
 				{
 					_uiManager._sellTheOtbToPlayerButton.interactable = true;
 					_uiManager._salePrice = amount;
