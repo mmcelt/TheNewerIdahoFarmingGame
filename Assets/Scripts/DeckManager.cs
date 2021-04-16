@@ -854,7 +854,7 @@ public class DeckManager : MonoBehaviourPun
 		//desc = "TETON DAM!";			//TESTING
 		//cardNum = 15;               //TESTING
 		//desc = "UNCLE CHEESTER";    //TESTING
-		//cardNum = 1;						//TESTING
+		//cardNum = 1;                //TESTING
 		//desc = "INCOME TAX!";			//TESTING
 		//cardNum = 19;					//TESTING
 		//desc = "CATTLE MUTILATION!";//TESTING

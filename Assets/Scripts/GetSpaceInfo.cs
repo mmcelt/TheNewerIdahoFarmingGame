@@ -212,7 +212,7 @@ public class GetSpaceInfo : MonoBehaviour
 				break;
 			case 37:
 				_headerText.text = "3RD WEEK IN SEPTEMBER";
-				_spaceText.text = "Market collapses.  <color=red>Cut livestock check in half</color>.";
+				_spaceText.text = "Market collapses.\n<color=red>Cut livestock check in half</color>.";
 				break;
 			case 38:
 				_headerText.text = "4TH WEEK IN SEPTEMBER";

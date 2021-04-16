@@ -337,7 +337,7 @@ public class BoardManager : MonoBehaviour
 
 			case 37:
 				_headerText.text = "3RD WEEK IN SEPTEMBER";
-				_spaceText.text = "Market collapses.  <color=red>Cut livestock check in half</color>.";
+				_spaceText.text = "Market collapses.\n<color=red>Cut livestock check in half</color>.";
 
 				_startPosition = new Vector3(-464, -374);
 				break;
