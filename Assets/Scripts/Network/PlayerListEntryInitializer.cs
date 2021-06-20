@@ -19,11 +19,6 @@ public class PlayerListEntryInitializer : MonoBehaviourPun
 	string selectedFarmer;
 	//int playerSelectionNumber;
 
-	#region Properties
-
-
-	#endregion
-
 	#region MonoBehaviour Methods
 
 	void OnEnable()
