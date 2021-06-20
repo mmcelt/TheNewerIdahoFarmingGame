@@ -297,9 +297,10 @@ public class GameManager : MonoBehaviourPun
 			string awardedPlayer = (string)recData[0];
 			string awardedFarmer = (string)recData[1];
 
-			//send msg to UIManager's to display the message to all...
+			//send msg to all UIManagers to display the message to all...
 			//event data
 			Color fontColor = uiManager.SelectFontColorForFarmer(awardedFarmer);
+
 			Vector3 splitColor = Vector3.zero;
 			splitColor = SplitColorToRGB(fontColor);
 			string message = awardedPlayer + " has received a $1000 Bonus for being the first to plant Spuds! This is Idaho after all...";
