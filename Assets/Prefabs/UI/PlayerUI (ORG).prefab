@@ -26120,7 +26120,7 @@ GameObject:
   - component: {fileID: 2215742475685135937}
   - component: {fileID: 3499930308920151390}
   m_Layer: 5
-  m_Name: New PlayerUI
+  m_Name: PlayerUI (ORG)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
