@@ -83,6 +83,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 			Instance = this;
 		else if (Instance != this)
 			Destroy(gameObject);
+
+		Resolution currentResolution = Screen.currentResolution;
+		
+		if(currentResolution.width == 3840 && currentResolution.height == 2160)
+		{
+			//4K
+			Screen.SetResolution(2560, 1440, false);
+		}
+		else if(currentResolution.width == 2560 && currentResolution.height == 1440)
+		{
+			//2K
+			Screen.SetResolution(1920, 1080, false);
+		}
+		else if (currentResolution.width == 1920 && currentResolution.height == 1080)
+		{
+			//HD
+			Screen.SetResolution(1600, 900, false);
+		}
 	}
 
 	void Start() 
