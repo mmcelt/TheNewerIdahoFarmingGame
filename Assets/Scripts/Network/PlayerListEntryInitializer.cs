@@ -151,6 +151,7 @@ public class PlayerListEntryInitializer : MonoBehaviourPun
 				break;
 			case 3:
 				playerNameText.color = Color.black;
+				playerNameText.GetComponent<Outline>().enabled = false;
 				farmer = IFG.Ric;
 				break;
 			case 4:
