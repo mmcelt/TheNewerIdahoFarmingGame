@@ -191,7 +191,7 @@ public class DeckManager : MonoBehaviourPun
 				//_uiManager._wagesGarnishedWarning.SetActive(true);
 				//TODO: play hideous sound
 				AudioManager.Instance._aSource.Stop();
-				AudioManager.Instance.PlaySound(AudioManager.Instance._garnished);
+				AudioManager.Instance.PlaySound(AudioManager.Instance._goatScream);
 				break;
 
 			case 15: //uncle cheester
