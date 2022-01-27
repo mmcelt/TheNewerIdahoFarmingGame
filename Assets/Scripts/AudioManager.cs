@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
 	public AudioClip _hurtBack;
 	public AudioClip _farmingLikeAnIdiot;
 	public AudioClip _shuffle;
+	public AudioClip _goatScream;
 
 	[Header("UI Sounds")]
 	public AudioClip _buttonClick;
