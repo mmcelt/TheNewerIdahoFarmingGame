@@ -40,7 +40,7 @@ public class OTBListViewManager: MonoBehaviour
 
 	void Awake()
 	{
-		Debug.Log("OTB LISTVIEW IS AWAKE");
+		//Debug.Log("OTB LISTVIEW IS AWAKE");
 		//_pManager = _uiManager._pManager;
 
 		// Initialize an array with some example column widths
@@ -77,7 +77,7 @@ public class OTBListViewManager: MonoBehaviour
 		_theListView.Items.Clear();
 		_theListView.SelectedIndices.Clear();
 
-		Debug.Log("OTBs"+_pManager._myOtbs.Count);
+		//Debug.Log("OTBs"+_pManager._myOtbs.Count);
 		foreach (OTBCard card in _pManager._myOtbs)
 			_theListView.Items.Add(AddItem(card));
 
@@ -88,7 +88,7 @@ public class OTBListViewManager: MonoBehaviour
 	{
 		//string targetListView = _theListView.name;
 
-		Debug.Log($"Selected Index: {_theListView.SelectedIndices[0]}");
+		//Debug.Log($"Selected Index: {_theListView.SelectedIndices[0]}");
 		//Debug.Log($"ListView: {targetListView}");
 
 		_uiManager.OnOtbListViewValueChanged(_theListView.SelectedIndices[0]);

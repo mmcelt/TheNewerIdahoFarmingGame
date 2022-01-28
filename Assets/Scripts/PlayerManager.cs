@@ -81,6 +81,8 @@ public class PlayerManager : MonoBehaviourPun
 
 	//int loopCounter;
 
+	bool _doneOnce;
+
 	#endregion
 
 	#region Properties
@@ -349,23 +351,7 @@ public class PlayerManager : MonoBehaviourPun
 		if (GameManager.Instance._gameMode == "Networth Game" && GameManager.Instance._networthGameAmount >= 41000)
 		{
 			//CHECK FOR END OF THE GAME...
-			if (_pNetworth >= GameManager.Instance._networthGameAmount)
-			{
-				//game over!
-				GameManager.Instance._gameOver = true;
-				//data
-				object[] sndData = new object[] { PhotonNetwork.LocalPlayer.NickName, GameManager.Instance.myFarmerName, _pNetworth };
-				//event options
-				RaiseEventOptions eventOptions = new RaiseEventOptions()
-				{
-					Receivers = ReceiverGroup.All,
-					CachingOption = EventCaching.DoNotCache
-				};
-				//send options
-				SendOptions sendOptions = new SendOptions() { Reliability = true };
-				//fire it
-				PhotonNetwork.RaiseEvent((byte)RaiseEventCodes.End_Networth_Game_Event_Code, sndData, eventOptions, sendOptions);
-			}
+			CheckForEndOfGame();
 		}
 	}
 
@@ -679,9 +665,6 @@ public class PlayerManager : MonoBehaviourPun
 		//fire the event...
 		PhotonNetwork.RaiseEvent((byte)RaiseEventCodes.Replace_Otb_Event_Code, sendData, eventOptions, sendOptions);
 	}
-	#endregion
-
-	#region Private Methods
 
 	public void UpdateMyUI()
 	{
@@ -697,6 +680,76 @@ public class PlayerManager : MonoBehaviourPun
 		}
 	}
 
+	//called by UIManager via Option Panel Button
+	public void EndNetworthGame()
+	{
+		GameManager.Instance._gameOver = true;
+		DetermineWinner();
+	}
+	#endregion
+
+	#region Private Methods
+
+	void CheckForEndOfGame()
+	{
+		if (_pNetworth >= GameManager.Instance._networthGameAmount)
+		{
+			//game over!
+			GameManager.Instance._gameOver = true;
+			//data
+			object[] sndData = new object[] { PhotonNetwork.LocalPlayer.NickName, GameManager.Instance.myFarmerName, _pNetworth };
+			//event options
+			RaiseEventOptions eventOptions = new RaiseEventOptions()
+			{
+				Receivers = ReceiverGroup.All,
+				CachingOption = EventCaching.DoNotCache
+			};
+			//send options
+			SendOptions sendOptions = new SendOptions() { Reliability = true };
+			//fire it
+			PhotonNetwork.RaiseEvent((byte)RaiseEventCodes.End_Networth_Game_Event_Code, sndData, eventOptions, sendOptions);
+		}
+	}
+
+	void DetermineWinner()
+	{
+		Debug.Log("IN DETERMINE WINNER B4 IF");
+		//StopCoroutine("Timer");
+
+		if (/*!PhotonNetwork.IsMasterClient | */_doneOnce) return;
+		_doneOnce = true;
+
+		Debug.Log("IN DETERMINE WINNER AFTER IF");
+
+		int highestNetworth = 0;
+		string winnerPlayer = "";
+		string winningFarmer = "";
+
+		//this finds the winner...
+		foreach (Player player in GameManager.Instance._cachedPlayerList)
+		{
+			int playerNetworth = (int)player.CustomProperties[IFG.Player_Networth];
+			if (playerNetworth > highestNetworth)
+			{
+				highestNetworth = playerNetworth;
+				winnerPlayer = player.NickName;
+				winningFarmer = (string)player.CustomProperties[IFG.Selected_Farmer];
+			}
+		}
+		//send event to all UIManagers...
+		//data - winnerName,farmerName,highestNetworth
+		object[] winnerData = new object[] { winnerPlayer, winningFarmer, highestNetworth };
+		//event option
+		RaiseEventOptions eventOptions = new RaiseEventOptions
+		{
+			Receivers = ReceiverGroup.All,
+			CachingOption = EventCaching.DoNotCache
+		};
+		//send options
+		SendOptions sendOptions = new SendOptions() { Reliability = true };
+		//fire the event...
+		PhotonNetwork.RaiseEvent((byte)RaiseEventCodes.End_Networth_Game_Event_Code, winnerData, eventOptions, sendOptions);
+	}
 
 	void OnChangingActivePlayer(EventData eventData)
 	{

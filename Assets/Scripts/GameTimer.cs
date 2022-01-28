@@ -61,7 +61,7 @@ public class GameTimer : MonoBehaviourPun
 			_time -= Time.deltaTime;
 			photonView.RPC("UpdateTimer", RpcTarget.All, _time);
 		}
-		else if (_time < 0.0f && _canCountDown)
+		else if (_time <= 0.0f && _canCountDown)
 		{
 			_canCountDown = false;
 			DetermineTheWinner();

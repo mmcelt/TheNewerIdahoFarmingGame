@@ -553,7 +553,7 @@ public class StickerManager : MonoBehaviour
 
 	void SelectRonSticker(string sticker, int amount)
 	{
-		Debug.Log("IN SELECTSTICKER: " + sticker + " " + amount);
+		//Debug.Log("IN SELECTSTICKER: " + sticker + " " + amount);
 
 		switch (sticker)
 		{

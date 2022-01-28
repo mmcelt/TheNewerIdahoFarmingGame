@@ -57,6 +57,7 @@ public class UIManager : MonoBehaviourPun
 
 	[Header("Options Panel")]
 	public GameObject _optionsPanel;
+	[SerializeField] GameObject _buttonsParent;
 	[SerializeField] GameObject _resetWinnersListButton;
 	[SerializeField] GameObject _makeTheMasterListButton;
 	[SerializeField] Text _secondChanceWarningText;
@@ -243,6 +244,7 @@ public class UIManager : MonoBehaviourPun
 		PhotonNetwork.NetworkingClient.EventReceived += OnEndOfNetworthGameEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived += OnOutOfOtbCardsMessageEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived += OnEndOfTimedGameEventReceived;
+		//PhotonNetwork.NetworkingClient.EventReceived += OnEarlyEndOfNetorthGameEventReceived;
 	}
 
 	void OnDisable()
@@ -255,6 +257,7 @@ public class UIManager : MonoBehaviourPun
 		PhotonNetwork.NetworkingClient.EventReceived -= OnEndOfNetworthGameEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived -= OnOutOfOtbCardsMessageEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived -= OnEndOfTimedGameEventReceived;
+		//PhotonNetwork.NetworkingClient.EventReceived -= OnEarlyEndOfNetorthGameEventReceived;
 	}
 
 	void Awake()
@@ -774,6 +777,12 @@ public class UIManager : MonoBehaviourPun
 		}
 	}
 
+	public void OnEndNetworthGameButtonClicked()
+	{
+		DisbleOptionPanelButtons();
+		_pManager.EndNetworthGame();
+	}
+
 	public void OnChangeScreenResolutionSliderValueChanged(float value)
 	{
 		switch(value)
@@ -1200,7 +1209,7 @@ public class UIManager : MonoBehaviourPun
 		if (_selectedCard == null) yield break;
 
 		_transactionBlocked = true;
-		_buyOptionButton.interactable = false;
+		_buyOptionButton.interactable = !_transactionBlocked;
 		yield return new WaitUntil(() => CheckIfAbleToBuyOption());
 		//Debug.Log("Past CIATBO");
 		if (_selectedCard.cardNumber >= 29 && _selectedCard.cardNumber <= 40)
@@ -1220,6 +1229,9 @@ public class UIManager : MonoBehaviourPun
 		{
 			yield return new WaitUntil(() => !CheckIfEquipmentIsAlreadyOwned("Harvester"));
 		}
+
+		//_transactionBlocked = false;	//testing
+
 		yield return new WaitUntil(() => !_transactionBlocked);
 		//Debug.Log("Past TB");
 		_buyOptionButton.interactable = true;
@@ -1342,6 +1354,14 @@ public class UIManager : MonoBehaviourPun
 		_tempCash = _pManager._pCash;
 		_tempNotes = _pManager._pNotes;
 		UpdateActionsPanelFunds(_tempCash, _tempNotes);
+	}
+
+	public void ReenableOptionPanelButtons()
+	{
+		foreach (var item in _buttonsParent.transform.GetComponentsInChildren<Button>())
+		{
+			item.interactable = true;
+		}
 	}
 	#endregion
 
@@ -1762,6 +1782,9 @@ public class UIManager : MonoBehaviourPun
 			{
 				if (_pMove._currentSpace <= 14)
 				{
+					Debug.Log($"TC: {_tempCash}  TN: {_tempNotes}");
+					Debug.Log($"PC: {_pManager._pCash}  PN: {_pManager._pNotes}");
+
 					if (_pManager._pCash >= _minDownPayment)
 					{
 						if (_pManager._pNotes <= 50000 - (_otbCost - _downPayment))
@@ -2127,6 +2150,14 @@ public class UIManager : MonoBehaviourPun
 		_secondChanceWarningText.text = "";
 		_okToProceed = false;
 	}
+
+	void DisbleOptionPanelButtons()
+	{
+		foreach (var item in _buttonsParent.transform.GetComponentsInChildren<Button>())
+		{
+			item.interactable = false;
+		}
+	}
 	#endregion
 
 	#region Photon Event Handlers
@@ -2336,6 +2367,7 @@ public class UIManager : MonoBehaviourPun
 			StartCoroutine(ShowGameOverMessageRoutine(message, fontColor, 5.0f, winnerName, farmerName, networth, gameEnd, nop, ruNames, ruFarmers, ruNetworths));
 		}
 	}
+
 	//sent to all
 	void OnEndOfTimedGameEventReceived(EventData eventData)
 	{
@@ -2395,6 +2427,14 @@ public class UIManager : MonoBehaviourPun
 			StartCoroutine(ShowGameOverMessageRoutine(message, fontColor, 5.0f, winnerName, farmerName, networth, (int)gameEnd, nop, ruNames, ruFarmers, ruNetworths));
 		}
 	}
+
+	//void OnEarlyEndOfNetorthGameEventReceived(EventData eventData)
+	//{
+	//	if (eventData.Code == (byte)RaiseEventCodes.End_Networth_Game_Early_Event_Code)
+	//	{
+
+	//	}
+	//}
 	#endregion
 
 	#region TESTING METHODS

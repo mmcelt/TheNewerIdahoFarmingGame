@@ -58,7 +58,7 @@ public class InputFieldManager : MonoBehaviour
 		if (amount >= 0 && amount < rounding)
 			amount = rounding;
 
-		Debug.Log("AMOUNT AFTER ROUNDING: " + amount);
+		//Debug.Log("AMOUNT AFTER ROUNDING: " + amount);
 
 		if (amount > 0)
 		{
@@ -66,12 +66,13 @@ public class InputFieldManager : MonoBehaviour
 			{
 				StopCoroutine("BuyOptionRoutine");
 				_uiManager._transactionBlocked = true;
+				_uiManager._buyOptionButton.interactable = !_uiManager._transactionBlocked;
 				StartCoroutine(_uiManager.BuyOptionRoutine());
 
 
 				if (amount < _uiManager._minDownPayment || amount > _pManager._pCash)
 				{
-					Debug.Log("INSIDE DP IF: " + amount);
+					//Debug.Log("INSIDE DP IF: " + amount);
 
 					_uiManager._tempCash -= amount;
 					_uiManager._tempNotes += _uiManager._otbCost - amount;

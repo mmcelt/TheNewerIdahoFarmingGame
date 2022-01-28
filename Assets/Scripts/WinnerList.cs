@@ -260,6 +260,7 @@ public class WinnerList : MonoBehaviour
 	{
 		_winnersPanel.SetActive(false);
 		_uiManager._optionsPanel.SetActive(true);
+		_uiManager.ReenableOptionPanelButtons();
 		_uiManager._optionsPanel.GetComponent<DOTweenAnimation>().DOPlayForward();
 
 	}

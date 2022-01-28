@@ -846,8 +846,8 @@ public class DeckManager : MonoBehaviourPun
 
 	void CreateAnFFCard(int cardNum, string desc)
 	{
-		//cardNum = 14;					//TESTING
-		//desc = "GARNISHED!";			//TESTING
+		//cardNum = 14;              //TESTING
+		//desc = "GARNISHED!";       //TESTING
 		//cardNum = 13;					//TESTING
 		//desc = "CUSTOM HARVESTER";	//TESTING
 		//cardNum = 10;					//TESTING
