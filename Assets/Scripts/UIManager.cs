@@ -779,8 +779,15 @@ public class UIManager : MonoBehaviourPun
 
 	public void OnEndNetworthGameButtonClicked()
 	{
-		DisbleOptionPanelButtons();
-		_pManager.EndNetworthGame();
+		//play click sound
+		AudioManager.Instance.PlaySound(AudioManager.Instance._lifeAlteringButtonClick);
+
+		if (!_warningGiven)
+		{
+			_optionsWarningPanelModalPanel.SetActive(true);
+			_warningGiven = true;
+			StartCoroutine(WarningPanelRoutine("EndNetworthGame"));
+		}
 	}
 
 	public void OnChangeScreenResolutionSliderValueChanged(float value)
@@ -2119,6 +2126,10 @@ public class UIManager : MonoBehaviourPun
 			case "MakeMasterList":
 				_secondChanceWarningText.text = "MAKE MASTER LIST BUTTON PRESSED\n";
 				break;
+
+			case "":
+				_secondChanceWarningText.text = "END NETORTH GAME BUTTON PRESSED\n";
+				break;
 		}
 		_secondChanceWarningText.text += "Are you sure you want to do this?";
 
@@ -2144,6 +2155,13 @@ public class UIManager : MonoBehaviourPun
 				if (_okToProceed)
 				{
 					WinnerList.Instance.MakeTheMasterList();
+				}
+				break;
+
+			case "EndNetworthGame":
+				if (_okToProceed)
+				{
+					_pManager.EndNetworthGame();
 				}
 				break;
 		}
