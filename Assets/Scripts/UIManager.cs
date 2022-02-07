@@ -62,6 +62,7 @@ public class UIManager : MonoBehaviourPun
 	[SerializeField] GameObject _makeTheMasterListButton;
 	[SerializeField] Text _secondChanceWarningText;
 	[SerializeField] Text _screenResText;
+	[SerializeField] Button _quitButton;
 
 	[Header("Sell OTB to Player Panel")]
 	[SerializeField] GameObject _sellOtbToPlayerPanel;
@@ -2127,7 +2128,7 @@ public class UIManager : MonoBehaviourPun
 				_secondChanceWarningText.text = "MAKE MASTER LIST BUTTON PRESSED\n";
 				break;
 
-			case "":
+			case "EndNetworthGame":
 				_secondChanceWarningText.text = "END NETORTH GAME BUTTON PRESSED\n";
 				break;
 		}
@@ -2161,6 +2162,7 @@ public class UIManager : MonoBehaviourPun
 			case "EndNetworthGame":
 				if (_okToProceed)
 				{
+					_quitButton.interactable = false;
 					_pManager.EndNetworthGame();
 				}
 				break;
