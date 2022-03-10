@@ -32,13 +32,13 @@ public class GameTimer : MonoBehaviourPun
 
 	#region MonoBehaviour Methods
 
-	void Start() 
+	void Start()
 	{
 		_gameMode = GameManager.Instance._gameMode;
 
 		if (_gameMode =="Networth Game")
 		{
-			_startTime = Time.time;
+			_startTime = Time.timeSinceLevelLoad;
 			_canCountDown = false;
 		}
 		else
