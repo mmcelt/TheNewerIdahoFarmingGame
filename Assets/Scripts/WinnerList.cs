@@ -262,7 +262,8 @@ public class WinnerList : MonoBehaviour
 		_uiManager._optionsPanel.SetActive(true);
 		_uiManager.ReenableOptionPanelButtons();
 		_uiManager._optionsPanel.GetComponent<DOTweenAnimation>().DOPlayForward();
-
+		if (GameManager.Instance._gameOver)
+			Application.Quit();
 	}
 
 	public void OnCloseRUPButtonClicked()
