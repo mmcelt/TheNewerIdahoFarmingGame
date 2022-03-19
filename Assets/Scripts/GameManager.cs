@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviourPun
 	public HarvestManager hManager;
 	public DeckManager dManager;
 	public StickerManager sManager;
+	public PlayerManager pManager;
 
 	public Text _timerText;
 	public int _activePlayer;
@@ -114,6 +115,34 @@ public class GameManager : MonoBehaviourPun
 		ChangeActivePlayer();
 	}
 
+	public void ChangeMyName(string newName)
+	{
+		PhotonNetwork.LocalPlayer.NickName = newName;
+		_cachedPlayerList[PhotonNetwork.LocalPlayer.ActorNumber - 1].NickName = newName;
+		uiManager.RefreshPlayerName(newName);
+		pManager.RefreshActivePlayerText();
+
+		//Fire Change Name Event
+		object[] sndData = new object[] { PhotonNetwork.LocalPlayer.ActorNumber, newName };
+		//send options
+		RaiseEventOptions eventOptions = new RaiseEventOptions
+		{
+			Receivers=ReceiverGroup.Others,
+			CachingOption = EventCaching.DoNotCache
+		};
+		//send option
+		SendOptions sendOptions = new SendOptions
+		{
+			Reliability = true
+		};
+		//fire the event...
+		PhotonNetwork.RaiseEvent((byte)RaiseEventCodes.Change_Player_Nickname_Event_Code, sndData, eventOptions, sendOptions);
+
+		//foreach (var player in PhotonNetwork.PlayerList)
+		//{
+		//	Debug.Log($"GM: {player.NickName}");
+		//}
+	}
 	#endregion
 
 	#region Private Methods
@@ -200,7 +229,7 @@ public class GameManager : MonoBehaviourPun
 
 	void InstantiateFarmer(int farmerIndex, Vector3 spawnPosition)
 	{
-		PhotonNetwork.Instantiate(playerPrefabs[farmerIndex].name, spawnPosition, Quaternion.identity);
+		pManager = PhotonNetwork.Instantiate(playerPrefabs[farmerIndex].name, spawnPosition, Quaternion.identity).GetComponent<PlayerManager>();
 	}
 
 	void UpdateCachedPlayerList()
@@ -391,6 +420,5 @@ public class GameManager : MonoBehaviourPun
 		Vector3 splitColor = new Vector3(r, g, b);
 		return splitColor;
 	}
-
 	#endregion
 }

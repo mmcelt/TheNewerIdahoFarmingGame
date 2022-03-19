@@ -107,6 +107,7 @@ public class PlayerManager : MonoBehaviourPun
 		PhotonNetwork.NetworkingClient.EventReceived += OnTetonDamEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived += OnTetonDamHitEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived += OnSellOtbToOtherPlayerEventReceived;
+		PhotonNetwork.NetworkingClient.EventReceived += OnPlayerNameChangedEventReceived;
 	}
 
 	void OnDisable()
@@ -119,6 +120,7 @@ public class PlayerManager : MonoBehaviourPun
 		PhotonNetwork.NetworkingClient.EventReceived -= OnTetonDamEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived -= OnTetonDamHitEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived -= OnSellOtbToOtherPlayerEventReceived;
+		PhotonNetwork.NetworkingClient.EventReceived -= OnPlayerNameChangedEventReceived;
 	}
 
 	void Start()
@@ -807,6 +809,12 @@ public class PlayerManager : MonoBehaviourPun
 		_uiManager._activePlayerText.color = _uiManager.SelectFontColorForFarmer((string)info.Sender.CustomProperties[IFG.Selected_Farmer]);
 	}
 
+	public void RefreshActivePlayerText()
+	{
+		_uiManager._activePlayerText.text = GameManager.Instance._cachedPlayerList
+	 [GameManager.Instance._activePlayer - 1].NickName;
+	}
+
 	void OnReceiveInitialOtbCards(EventData eventData)
 	{
 		if (eventData.Code == (byte)RaiseEventCodes.Get_Initial_Otb_Event_Code)
@@ -1197,6 +1205,16 @@ public class PlayerManager : MonoBehaviourPun
 			UpdateMyUI();
 		}
 
+	}
+
+	void OnPlayerNameChangedEventReceived(EventData eventData)
+	{
+		if (eventData.Code == (byte)RaiseEventCodes.Change_Player_Nickname_Event_Code)
+		{
+			//object[] recData = (object[])eventData.CustomData;
+			//string newName = (string)recData[1];
+			RefreshActivePlayerText();
+		}
 	}
 	#endregion
 }

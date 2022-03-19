@@ -63,6 +63,7 @@ public class UIManager : MonoBehaviourPun
 	[SerializeField] Text _secondChanceWarningText;
 	[SerializeField] Text _screenResText;
 	[SerializeField] Button _quitButton;
+	[SerializeField] TMP_InputField _nameInput;
 
 	[Header("Sell OTB to Player Panel")]
 	[SerializeField] GameObject _sellOtbToPlayerPanel;
@@ -245,6 +246,7 @@ public class UIManager : MonoBehaviourPun
 		PhotonNetwork.NetworkingClient.EventReceived += OnEndOfNetworthGameEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived += OnOutOfOtbCardsMessageEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived += OnEndOfTimedGameEventReceived;
+		PhotonNetwork.NetworkingClient.EventReceived += OnChangeNameEventReceived;
 		//PhotonNetwork.NetworkingClient.EventReceived += OnEarlyEndOfNetorthGameEventReceived;
 	}
 
@@ -258,6 +260,7 @@ public class UIManager : MonoBehaviourPun
 		PhotonNetwork.NetworkingClient.EventReceived -= OnEndOfNetworthGameEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived -= OnOutOfOtbCardsMessageEventReceived;
 		PhotonNetwork.NetworkingClient.EventReceived -= OnEndOfTimedGameEventReceived;
+		PhotonNetwork.NetworkingClient.EventReceived -= OnChangeNameEventReceived;
 		//PhotonNetwork.NetworkingClient.EventReceived -= OnEarlyEndOfNetorthGameEventReceived;
 	}
 
@@ -1049,9 +1052,32 @@ public class UIManager : MonoBehaviourPun
 			_sellPropertyToBankMessageText.text = "";
 		}
 	}
+
+	public void OnChangeNameConfirmButtonClick()
+	{
+		if (!string.IsNullOrEmpty(_nameInput.text))
+			GameManager.Instance.ChangeMyName(_nameInput.text);
+	}
+
+	public void OnChangeNameCancelButtonClick()
+	{
+		_nameInput.text = string.Empty;
+	}
 	#endregion
 
 	#region Public Methods
+
+	//called on a player name change
+	public void RefreshPlayerName(string newName)
+	{
+		_playerNameText.text = newName;
+	}
+
+	//called on a player name change
+	public void RefreshRemotePlayerNames()
+	{
+		StartCoroutine(UpdateRemotePlayerInfoRoutine());
+	}
 
 	public void UpdateUI()
 	{
@@ -1444,7 +1470,10 @@ public class UIManager : MonoBehaviourPun
 					index++;
 				}
 			}
-
+			foreach (var player in PhotonNetwork.PlayerList)
+			{
+				Debug.Log($"UIM: {player.NickName}");
+			}
 			yield return new WaitForSeconds(0.5f);
 		}
 	}
@@ -2448,6 +2477,19 @@ public class UIManager : MonoBehaviourPun
 		}
 	}
 
+	public void OnChangeNameEventReceived(EventData eventData)
+	{
+		if (eventData.Code == (byte)RaiseEventCodes.Change_Player_Nickname_Event_Code)
+		{
+			object[] recData = (object[])eventData.CustomData;
+			int actorNumber = (int)recData[0];
+			string newName = (string)recData[1];
+
+			PhotonNetwork.PlayerList[actorNumber-1].NickName = newName;
+			GameManager.Instance._cachedPlayerList[actorNumber - 1].NickName = newName;
+			RefreshRemotePlayerNames();
+		}
+	}
 	//void OnEarlyEndOfNetorthGameEventReceived(EventData eventData)
 	//{
 	//	if (eventData.Code == (byte)RaiseEventCodes.End_Networth_Game_Early_Event_Code)
