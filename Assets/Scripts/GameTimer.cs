@@ -20,10 +20,11 @@ public class GameTimer : MonoBehaviourPun
 	string _gameMode;
 	bool _canCountDown;
 	bool _doneOnce;
+	bool _timerStarted;
+	float _timeZero;
 
 	#endregion
 
-	//bool _endTimedGame;
 
 	#region Properties
 
@@ -32,13 +33,23 @@ public class GameTimer : MonoBehaviourPun
 
 	#region MonoBehaviour Methods
 
+	void OnEnable()
+	{
+		//PhotonNetwork.NetworkingClient.EventReceived += StartTimer;
+	}
+
+	void OnDisable()
+	{
+		//PhotonNetwork.NetworkingClient.EventReceived -= StartTimer;
+	}
+
 	void Start()
 	{
 		_gameMode = GameManager.Instance._gameMode;
 
-		if (_gameMode =="Networth Game")
+		if (_gameMode == "Networth Game")
 		{
-			_startTime = Time.timeSinceLevelLoad;
+			_startTime = 0f;
 			_canCountDown = false;
 		}
 		else
@@ -77,9 +88,39 @@ public class GameTimer : MonoBehaviourPun
 
 	#region Private Methods
 
+	void StartTimer(EventData data)
+	{
+		if (data.Code == (byte)RaiseEventCodes.Game_Start_Event_Code)
+		{
+			_gameMode = GameManager.Instance._gameMode;
+
+			if (_gameMode == "Networth Game")
+			{
+				_startTime = 0f;
+				_canCountDown = false;
+			}
+			else
+			{
+				_startTime = GameManager.Instance._timedGameLength * 60;
+				_time = _startTime;
+				_canCountDown = true;
+			}
+
+			if (PhotonNetwork.IsMasterClient && _gameMode == "Networth Game")
+				StartCoroutine("Timer");
+		}
+	}
+
 	IEnumerator Timer()
 	{
-		_time = _startTime + Time.time;
+		if (!_timerStarted) 
+		{
+			_time = _startTime;
+			_timeZero = Time.time;
+			_timerStarted = true;
+		}
+		else
+			_time = _startTime + Time.time - _timeZero;
 
 		photonView.RPC("UpdateTimer", RpcTarget.All, _time);
 

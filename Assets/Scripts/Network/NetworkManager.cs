@@ -6,6 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using System.IO;
+using ExitGames.Client.Photon;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -293,6 +294,23 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 	public void OnStartGameButtonClicked()
 	{
 		if (!PhotonNetwork.IsMasterClient) return;
+
+		////send start game event
+		////event data: none
+		//object[] sndData = new object[] { };
+		////send options
+		//RaiseEventOptions eventOptions = new RaiseEventOptions
+		//{
+		//	Receivers = ReceiverGroup.All,
+		//	CachingOption = EventCaching.DoNotCache
+		//};
+		////send options
+		//SendOptions sendOptions = new SendOptions
+		//{
+		//	Reliability = true
+		//};
+		////fire the event...
+		//PhotonNetwork.RaiseEvent((byte)RaiseEventCodes.Game_Start_Event_Code, sndData, eventOptions, sendOptions);
 
 		PhotonNetwork.LoadLevel(1);
 	}

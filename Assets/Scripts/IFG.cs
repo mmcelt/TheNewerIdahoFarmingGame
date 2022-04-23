@@ -86,6 +86,6 @@ public enum RaiseEventCodes
 	End_Timed_Game_Event_Code = 28,
 	Teton_Dam_Hit_Event_Code = 29,
 	Change_Player_Nickname_Event_Code = 30,
-	//End_Networth_Game_Early_Event_Code = 31
+	Game_Start_Event_Code = 31
 };
 
