@@ -688,6 +688,11 @@ public class PlayerManager : MonoBehaviourPun
 		GameManager.Instance._gameOver = true;
 		DetermineWinner();
 	}
+
+	public void SortMyOTBs()
+	{
+		_myOtbs.Sort((x, y) => x.description.CompareTo(y.description));
+	}
 	#endregion
 
 	#region Private Methods
@@ -838,9 +843,11 @@ public class PlayerManager : MonoBehaviourPun
 			_myOtbCount = _myOtbs.Count;
 			//UpdateMyOtbCount(_myOtbCount);
 			//_rpUpdater.UpdateRemotePlayerData();
+			SortMyOTBs();
 			UpdateMyUI();
 		}
 	}
+
 
 	void OnOtbCardReceived(EventData eventData)
 	{
@@ -914,6 +921,7 @@ public class PlayerManager : MonoBehaviourPun
 		_myOtbCount = _myOtbs.Count;
 		//UpdateMyOtbCount(_myOtbCount);
 		//_rpUpdater.UpdateRemotePlayerData();
+		SortMyOTBs();
 		UpdateMyUI();
 	}
 

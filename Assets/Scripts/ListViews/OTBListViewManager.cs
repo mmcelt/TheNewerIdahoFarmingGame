@@ -77,18 +77,14 @@ public class OTBListViewManager: MonoBehaviour
 	{
 		_theListView.Items.Clear();
 		_theListView.SelectedIndices.Clear();
-		//sorting the list by description...
-		List<OTBCard> sortedOTBs = _pManager._myOtbs.OrderBy(x => x.description).ToList();
 
-		//sorted otb's...
-		foreach (var card in sortedOTBs)
-		{
-			_theListView.Items.Add(AddItem(card));
-		}
 		//Debug.Log("OTBs"+_pManager._myOtbs.Count);
-		////unsorted...
-		//foreach (OTBCard card in _pManager._myOtbs)
-		//	_theListView.Items.Add(AddItem(card));
+		//unsorted...
+		//sorted otb's...
+		_pManager.SortMyOTBs();
+
+		foreach (OTBCard card in _pManager._myOtbs)
+			_theListView.Items.Add(AddItem(card));
 
 		Invoke(nameof(GetItemCustomButtons), 0.1f);
 	}

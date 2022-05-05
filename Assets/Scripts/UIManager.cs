@@ -1639,7 +1639,8 @@ public class UIManager : MonoBehaviourPun
 		_otbOkButton.gameObject.SetActive(false);
 		StopCoroutine("BuyOptionRoutine");
 		ResetTempFunds();
-		PopulateDropdown(_otbDropdown.name);
+		//PopulateDropdown(_otbDropdown.name);
+		PopulateListView("OTB ListView");
 	}
 
 	//called by the otbOk button
