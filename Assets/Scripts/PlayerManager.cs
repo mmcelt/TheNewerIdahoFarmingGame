@@ -691,7 +691,7 @@ public class PlayerManager : MonoBehaviourPun
 
 	public void SortMyOTBs()
 	{
-		_myOtbs.Sort((x, y) => x.description.CompareTo(y.description));
+		_myOtbs.Sort((x, y) => x.summary.CompareTo(y.summary));
 	}
 	#endregion
 
