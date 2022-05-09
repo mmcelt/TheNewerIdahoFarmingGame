@@ -76,7 +76,7 @@ public class SubmitWithButton : MonoBehaviour
 				break;
 		}
 		//_uiManager._actionsPanel.SetActive(false);
-		_uiManager._actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
+		//_uiManager._actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 	}
 
 	private bool SelectCorrectValidation(string target)

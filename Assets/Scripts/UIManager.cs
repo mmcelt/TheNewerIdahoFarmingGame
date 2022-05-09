@@ -328,8 +328,9 @@ public class UIManager : MonoBehaviourPun
 		if (_actionsPanel.activeSelf)
 		{
 			_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
-			ResetOtbListPanel();
-			ResetActionPanel();
+			//ResetOtbListPanel();
+			//ResetActionPanel();
+			CloseActionPanel();
 		}
 		//play click sound
 		AudioManager.Instance.PlaySound(AudioManager.Instance._buttonClick);
@@ -343,9 +344,10 @@ public class UIManager : MonoBehaviourPun
 	{
 		if (_actionsPanel.activeSelf)
 		{
-			_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
-			ResetOtbListPanel();
-			ResetActionPanel();
+			//_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
+			//ResetOtbListPanel();
+			//ResetActionPanel();
+			CloseActionPanel();
 		}
 
 		//play click sound
@@ -381,7 +383,8 @@ public class UIManager : MonoBehaviourPun
 		}
 		else if (_actionsPanel.activeInHierarchy)
 		{
-			ResetActionPanel();
+			//ResetActionPanel();
+			CloseActionPanel();
 		}
 	}
 
@@ -391,7 +394,7 @@ public class UIManager : MonoBehaviourPun
 		//play click sound
 		AudioManager.Instance.PlaySound(AudioManager.Instance._buttonClick);
 
-		ResetActionPanel();
+		CloseActionPanel();
 		//_actionsPanel.SetActive(false);
 	}
 
@@ -404,7 +407,7 @@ public class UIManager : MonoBehaviourPun
 		{
 			_buyOptionButton.interactable = false;
 			UseOtb(_selectedCard);
-			OnCloseButtonClicked();
+			ResetActionPanel();
 			//_actionsPanel.SetActive(false);
 		}
 		else
@@ -508,7 +511,7 @@ public class UIManager : MonoBehaviourPun
 		_getLoanInput.text = "";
 		_getLoanInput.placeholder.GetComponent<Text>().text = "Enter your Loan Amount...";
 		ResetTempFunds();
-		OnCloseButtonClicked();
+		//OnCloseButtonClicked();
 	}
 
 	public void OnOtbDropdownValueChanged(int index)
@@ -1415,6 +1418,15 @@ public class UIManager : MonoBehaviourPun
 		StopCoroutine("BuyOptionRoutine");
 		ResetOtbListPanel();
 
+		//CloseActionPanel();
+	}
+
+	void CloseActionPanel()
+	{
+		StopCoroutine("SellOtbToPlayerRoutine");
+		StopCoroutine("SellOtbRoutine");
+		StopCoroutine("BuyOptionRoutine");
+		ResetOtbListPanel();
 		AudioManager.Instance.PlaySound(AudioManager.Instance._zoomOut);
 		_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 	}
