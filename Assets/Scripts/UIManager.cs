@@ -1627,7 +1627,7 @@ public class UIManager : MonoBehaviourPun
 	{
 		if (target == "OTB ListView")
 		{
-			Debug.Log("In PopulateListView");
+			//Debug.Log("In PopulateListView");
 			_otbListView.GetComponent<OTBListViewManager>().AddListViewOTBItems();
 		}
 		if(target== "Downpayment ListView")
@@ -1671,11 +1671,12 @@ public class UIManager : MonoBehaviourPun
 			_pManager.UpdateMyCash(_sellingPrice);
 			_pManager.DiscardOtbCard(_selectedCard);
 			ResetOtbListPanel();
-			PopulateDropdown(_otbDropdown.name);
+			//PopulateDropdown(_otbDropdown.name);
+			PopulateListView(_otbListView.name);
 		}
 		_cancelOtbSale = false;
 		ResetOtbListPanel();
-		_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
+		//_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 		//_actionsPanel.SetActive(false);
 		_isSelling = false;
 	}
@@ -1685,7 +1686,7 @@ public class UIManager : MonoBehaviourPun
 		_completeModalPanel.SetActive(true);
 		_sellOtbToPlayerPanel.SetActive(true);
 		_sellOtbToPlayerMessageText.text = "You are selling " + _selectedCard.summary;
-		_sellOtbToPlayerMessageText.text += "\n\nRecomended Sale price is: " + GetSalePrice().ToString("c0");
+		_sellOtbToPlayerMessageText.text += "\n\nRecommended Sale price is: " + GetSalePrice().ToString("c0");
 		PopulateDropdown(_playerSelectionDropdown.name);
 
 		yield return new WaitWhile(() => _sellOtbToPlayerPanel.activeSelf);
@@ -1696,7 +1697,7 @@ public class UIManager : MonoBehaviourPun
 		_minSalePrice = 0;
 		_sellTheOtbToPlayerButton.interactable = false;
 		ResetOtbListPanel();
-		_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
+		//_actionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 		//_actionsPanel.SetActive(false);
 	}
 
