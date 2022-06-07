@@ -2143,6 +2143,7 @@ MonoBehaviour:
   hManager: {fileID: 258946703}
   dManager: {fileID: 167331618}
   sManager: {fileID: 681520324}
+  pManager: {fileID: 0}
   _timerText: {fileID: 1616852072}
   _activePlayer: 0
   _gameMode: 
@@ -3143,7 +3144,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ae2063088620a6641b17bc88a6334365, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d37a1943419099b44b32ee28ec1a1104, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
