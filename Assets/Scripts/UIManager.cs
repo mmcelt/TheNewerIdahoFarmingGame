@@ -184,6 +184,7 @@ public class UIManager : MonoBehaviourPun
 	public bool _okToProceed;
 	public bool _hasRolledForMovement;
 	public bool _tetonDamRoll;
+	public bool forcedLoanPanelInUse;
 
 	#endregion
 
@@ -734,6 +735,7 @@ public class UIManager : MonoBehaviourPun
 		AudioManager.Instance.PlaySound(AudioManager.Instance._buttonClick);
 
 		_optionsPanel.SetActive(true);
+		_forcedLoanPanel.SetActive(false);
 		_optionsPanel.GetComponent<DOTweenAnimation>().DOPlayForward();
 	}
 	//Options Panel
@@ -741,6 +743,9 @@ public class UIManager : MonoBehaviourPun
 	{
 		//play click sound
 		AudioManager.Instance.PlaySound(AudioManager.Instance._buttonClick);
+
+		if (forcedLoanPanelInUse)
+			_forcedLoanPanel.SetActive(true);
 
 		_optionsPanel.GetComponent<DOTweenAnimation>().DOPlayBackwards();
 	}

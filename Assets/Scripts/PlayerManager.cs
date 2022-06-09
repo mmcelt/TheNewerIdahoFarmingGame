@@ -1064,6 +1064,7 @@ public class PlayerManager : MonoBehaviourPun
 	{
 		_uiManager._forcedLoanModalPanel.SetActive(true);
 		_uiManager._forcedLoanPanel.SetActive(true);
+		_uiManager.forcedLoanPanelInUse = true;
 		_uiManager._forcedLoanPanel.GetComponent<DOTweenAnimation>().DOPlay();
 		yield return new WaitForSeconds(1f);
 		_uiManager._forcedLoanPanel.GetComponent<DOTweenAnimation>().DORewind();
@@ -1073,6 +1074,7 @@ public class PlayerManager : MonoBehaviourPun
 		yield return new WaitUntil(() => _pCash >= 0);
 		_uiManager._forcedLoanModalPanel.SetActive(false);
 		_uiManager._forcedLoanPanel.SetActive(false);
+		_uiManager.forcedLoanPanelInUse = false;
 		_uiManager._loanAmount = 0;
 		_uiManager._forcedLoanInput.text = "";
 		_uiManager._forcedLoanInput.placeholder.GetComponent<Text>().text = "Enter the Loan Amount...";
