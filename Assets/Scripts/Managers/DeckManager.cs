@@ -272,7 +272,7 @@ public class DeckManager : MonoBehaviourPun
 
 			case 26: //spuds in high demand for 1 year
 				_pManager._pSpudsDoubled = true;
-				//_pMove.ResetSpudCounter();
+				_pMove.ResetSpudCounter();
 
 				if (_pManager._pSpuds > 0)
 				{
@@ -785,7 +785,7 @@ public class DeckManager : MonoBehaviourPun
 		}
 	}
 
-	void MakeTheFfDeck()   //26 cards
+	void MakeTheFfDeck()   //27 cards
 	{
 		CreateAnFFCard(1,
 			"Income Taxes due.\n<color=red>PAY $7,000</color>.");
@@ -839,6 +839,8 @@ public class DeckManager : MonoBehaviourPun
 		CreateAnFFCard(25,
 			"Your Spuds are showing signs of Blight. Should have sprayed earlier.\nPAY $500 per Spud acre.");
 		CreateAnFFCard(26,
+			"Your Spuds are in great demand!\nDOUBLE your Spud Harvest for the year.");
+		CreateAnFFCard(27,
 			"Your Spuds are in great demand!\nDOUBLE your Spud Harvest for the year.");
 
 		ShuffleFfDeck(_ffCards);

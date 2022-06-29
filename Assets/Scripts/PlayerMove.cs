@@ -184,6 +184,12 @@ public class PlayerMove : MonoBehaviourPun
 	{
 		_cowCounter = 0;
 	}
+
+	public void ResetSpudCounter()
+	{
+		if(_pManager._pSpudsDoubled)
+			_spudCounter --;
+	}
 	#endregion
 
 	#region Private Methods
