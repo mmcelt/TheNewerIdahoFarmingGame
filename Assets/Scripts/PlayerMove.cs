@@ -184,11 +184,6 @@ public class PlayerMove : MonoBehaviourPun
 	{
 		_cowCounter = 0;
 	}
-
-	//public void ResetSpudCounter()
-	//{
-	//	_spudCounter = 0;
-	//}
 	#endregion
 
 	#region Private Methods
@@ -621,20 +616,19 @@ public class PlayerMove : MonoBehaviourPun
 		_pManager.UpdateMyGarnishedStatus(false);
 		_pManager._pWheatCutInHalf = false;
 		_pManager._pCherriesCutInHalf = false;
-		_pManager._pSpudsDoubled = false;
 
-		//if (_pManager._pSpudsDoubled)
-		//{
-		//	_spudCounter++;
-		//	if (_spudCounter == 1)
-		//	{
-		//		_pManager._pSpudsDoubled = false;
-		//		if (_pManager._pSpuds > 0)
-		//			_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Spuds", _pManager._pSpuds, _pManager._pSpudsDoubled);
+		if (_pManager._pSpudsDoubled)
+		{
+			_spudCounter++;
+			if (_spudCounter == 1)
+			{
+				_pManager._pSpudsDoubled = false;
+				if (_pManager._pSpuds > 0)
+					_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Spuds", _pManager._pSpuds, _pManager._pSpudsDoubled);
 
-		//		_spudCounter = 0;
-		//	}
-		//}
+				_spudCounter = 0;
+			}
+		}
 
 		if (_pManager._pCowsIncreased)
 		{
