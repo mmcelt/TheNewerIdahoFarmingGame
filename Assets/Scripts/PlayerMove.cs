@@ -80,6 +80,7 @@ public class PlayerMove : MonoBehaviourPun
 	float _moveSpeed;
 	public int _cowCounter;
 	public int _spudCounter;
+	public int spudsDoubledCounter;
 	bool _isDirectedMove;
 
 	MyDiceRoll _diceRoll;
@@ -187,7 +188,7 @@ public class PlayerMove : MonoBehaviourPun
 
 	public void ResetSpudCounter()
 	{
-		if(_pManager._pSpudsDoubled)
+		if(spudsDoubledCounter == 2)
 			_spudCounter --;
 	}
 	#endregion
@@ -634,6 +635,7 @@ public class PlayerMove : MonoBehaviourPun
 
 				_spudCounter = 0;
 			}
+			spudsDoubledCounter = 0;
 		}
 
 		if (_pManager._pCowsIncreased)

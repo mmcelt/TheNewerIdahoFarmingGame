@@ -271,7 +271,9 @@ public class DeckManager : MonoBehaviourPun
 				break;
 
 			case 26: //spuds in high demand for 1 year
+			case 27:
 				_pManager._pSpudsDoubled = true;
+				_pMove.spudsDoubledCounter++;
 				_pMove.ResetSpudCounter();
 
 				if (_pManager._pSpuds > 0)
