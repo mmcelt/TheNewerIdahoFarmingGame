@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviourPun
 	public bool _pWheatCutInHalf;
 	public bool _pCowsIncreased;
 	public bool _pSpudsDoubled;
+	public int _pSpudsDoubledCounter;
 	public bool _pCornDoubled;
 
 	[Header("Harvest Trackers")]

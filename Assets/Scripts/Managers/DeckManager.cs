@@ -270,18 +270,18 @@ public class DeckManager : MonoBehaviourPun
 				}
 				break;
 
-			case 26: //spuds in high demand for 1 year
-			case 27:
-				_pManager._pSpudsDoubled = true;
-				_pMove.spudsDoubledCounter++;
-				_pMove.ResetSpudCounter();
+			//case 26: //spuds in high demand for 1 year
+			//case 27:
+			//	_pManager._pSpudsDoubled = true;
+			//	_pMove.spudsDoubledCounter++;
+			//	_pMove.ResetSpudCounter();
 
-				if (_pManager._pSpuds > 0)
-				{
-					_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Spuds", _pManager._pSpuds, _pManager._pSpudsDoubled);
-				}
-				_uiManager.UpdateUI();
-				break;
+			//	if (_pManager._pSpuds > 0)
+			//	{
+			//		_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Spuds", _pManager._pSpuds, _pManager._pSpudsDoubled);
+			//	}
+			//	_uiManager.UpdateUI();
+			//	break;
 
 			default:
 				Debug.LogWarning("OOPS, card not found " + card);
@@ -787,7 +787,7 @@ public class DeckManager : MonoBehaviourPun
 		}
 	}
 
-	void MakeTheFfDeck()   //27 cards
+	void MakeTheFfDeck()   //25 cards
 	{
 		CreateAnFFCard(1,
 			"Income Taxes due.\n<color=red>PAY $7,000</color>.");
@@ -840,10 +840,10 @@ public class DeckManager : MonoBehaviourPun
 			"A rich couple from the city bought the neighboring farm and pay you a premium for your best hay to feed their fancy show horses.\n<color=green>COLLECT $100 per Hay acre</color>.");
 		CreateAnFFCard(25,
 			"Your Spuds are showing signs of Blight. Should have sprayed earlier.\nPAY $500 per Spud acre.");
-		CreateAnFFCard(26,
-			"Your Spuds are in great demand!\nDOUBLE your Spud Harvest for the year.");
-		CreateAnFFCard(27,
-			"Your Spuds are in great demand!\nDOUBLE your Spud Harvest for the year.");
+		//CreateAnFFCard(26,
+		//	"Your Spuds are in great demand!\nDOUBLE your Spud Harvest for the year.");
+		//CreateAnFFCard(27,
+		//	"Your Spuds are in great demand!\nDOUBLE your Spud Harvest for the year.");
 
 		ShuffleFfDeck(_ffCards);
 	}

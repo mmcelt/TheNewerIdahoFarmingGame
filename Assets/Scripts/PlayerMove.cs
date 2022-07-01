@@ -79,7 +79,7 @@ public class PlayerMove : MonoBehaviourPun
 	int _die;
 	float _moveSpeed;
 	public int _cowCounter;
-	public int _spudCounter;
+	//public int _spudCounter;
 	public int spudsDoubledCounter;
 	bool _isDirectedMove;
 
@@ -186,11 +186,11 @@ public class PlayerMove : MonoBehaviourPun
 		_cowCounter = 0;
 	}
 
-	public void ResetSpudCounter()
-	{
-		if(spudsDoubledCounter == 2)
-			_spudCounter --;
-	}
+	//public void ResetSpudCounter()
+	//{
+	//	if(spudsDoubledCounter == 2)
+	//		_spudCounter --;
+	//}
 	#endregion
 
 	#region Private Methods
@@ -619,24 +619,26 @@ public class PlayerMove : MonoBehaviourPun
 	{
 		_pManager._pHayDoubled = false;
 		_pManager._pHayDoubledCounter = 0;
+		_pManager._pSpudsDoubled = false;
+		_pManager._pSpudsDoubledCounter = 0;
 		_pManager._pCornDoubled = false;
 		_pManager.UpdateMyGarnishedStatus(false);
 		_pManager._pWheatCutInHalf = false;
 		_pManager._pCherriesCutInHalf = false;
 
-		if (_pManager._pSpudsDoubled)
-		{
-			_spudCounter++;
-			if (_spudCounter == 1)
-			{
-				_pManager._pSpudsDoubled = false;
-				if (_pManager._pSpuds > 0)
-					_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Spuds", _pManager._pSpuds, _pManager._pSpudsDoubled);
+		//if (_pManager._pSpudsDoubled)
+		//{
+		//	_spudCounter++;
+		//	if (_spudCounter == 1)
+		//	{
+		//		_pManager._pSpudsDoubled = false;
+		//		if (_pManager._pSpuds > 0)
+		//			_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Spuds", _pManager._pSpuds, _pManager._pSpudsDoubled);
 
-				_spudCounter = 0;
-			}
-			spudsDoubledCounter = 0;
-		}
+		//		_spudCounter = 0;
+		//	}
+		//	spudsDoubledCounter = 0;
+		//}
 
 		if (_pManager._pCowsIncreased)
 		{

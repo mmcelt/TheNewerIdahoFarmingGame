@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviourPun
 	public TextMeshProUGUI _currentYearText, _otbText, _playerCashText, _playerNotesText, _networthText;
 	public Image _harvesterImage, _tractorImage;
 	public Image _hayImage, _grainImage, _spudsImage, _farmCowImage, _rangeCowImage;
-	[SerializeField] Text _hayDoubledCounterText;
+	[SerializeField] Text _hayDoubledCounterText, _spudsDoubledCounterText;
 	[SerializeField] Sprite _hayNormal, _hayDoubled, _grainNormal, _grainDoubled, _spudsNormal, _spudsDoubled, _cowNormal, _cowDoubled;
 	[SerializeField] Text _hayText, _grainText, _fruitText, _spudText, _fCowText, _rCowText;
 
@@ -1174,9 +1174,15 @@ public class UIManager : MonoBehaviourPun
 			_grainImage.sprite = _grainNormal;
 
 		if (_pManager._pSpudsDoubled)
+		{
 			_spudsImage.sprite = _spudsDoubled;
+			_spudsDoubledCounterText.text = $"x{_pManager._pSpudsDoubledCounter}";
+		}
 		else
+		{
 			_spudsImage.sprite = _spudsNormal;
+			_spudsDoubledCounterText.text = $"x{_pManager._pSpudsDoubledCounter}";
+		}
 
 		if (_pManager._pCowsIncreased)
 		{

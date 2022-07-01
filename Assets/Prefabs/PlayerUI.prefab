@@ -11193,6 +11193,7 @@ RectTransform:
   - {fileID: 1691399339}
   - {fileID: 1174758593}
   - {fileID: 5435494762868496433}
+  - {fileID: 7654980914776245162}
   - {fileID: 1099414399454176961}
   - {fileID: 8176771632888478899}
   - {fileID: 4749420945413176783}
@@ -13185,7 +13186,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8176771632888478899}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17137,7 +17138,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4749420945413176783}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -18736,6 +18737,86 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: NO
+--- !u!1 &1719458667326984520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8394313406701811493}
+  - component: {fileID: 8149352653290125813}
+  - component: {fileID: 2340869516400099545}
+  m_Layer: 5
+  m_Name: Spuds Doubled Counter Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8394313406701811493
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719458667326984520}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7654980914776245162}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 24.999989, y: -22.8}
+  m_SizeDelta: {x: 50, y: 15}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8149352653290125813
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719458667326984520}
+  m_CullTransparentMesh: 0
+--- !u!114 &2340869516400099545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719458667326984520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 16
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
 --- !u!1 &1727382734522222901
 GameObject:
   m_ObjectHideFlags: 0
@@ -19508,7 +19589,7 @@ GameObject:
   - component: {fileID: 103746211645761826}
   - component: {fileID: 8600369307832018971}
   m_Layer: 5
-  m_Name: Text (3)
+  m_Name: Spuds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19527,7 +19608,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1099414399454176961}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23124,11 +23205,11 @@ RectTransform:
   - {fileID: 9014819905388889009}
   - {fileID: 7564666930075422793}
   - {fileID: 7219638318909018279}
-  - {fileID: 713561787609506482}
   - {fileID: 8820361319826467223}
   - {fileID: 5393852942339795350}
+  - {fileID: 713561787609506482}
   m_Father: {fileID: 1997006314}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -23173,7 +23254,7 @@ GameObject:
   - component: {fileID: 7684873621036489040}
   - component: {fileID: 383923574964332270}
   m_Layer: 5
-  m_Name: Text (5)
+  m_Name: Range Cows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23192,7 +23273,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1099414399454176961}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23455,7 +23536,7 @@ GameObject:
   - component: {fileID: 600519220038588989}
   - component: {fileID: 6797618171969893639}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Grain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25475,11 +25556,11 @@ RectTransform:
   - {fileID: 8372093774636403568}
   - {fileID: 2931335825781168681}
   - {fileID: 4236359406278931205}
-  - {fileID: 4886958525555527865}
   - {fileID: 1030788143336067029}
   - {fileID: 834132158474477342}
+  - {fileID: 4886958525555527865}
   m_Father: {fileID: 1997006314}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -25504,7 +25585,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 23
+  m_Spacing: 24.3
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -25973,11 +26054,11 @@ RectTransform:
   - {fileID: 4234042905289808440}
   - {fileID: 2669478875745608122}
   - {fileID: 734231751157995425}
-  - {fileID: 3122387586949215423}
   - {fileID: 5903424072355959033}
   - {fileID: 2390528118870352206}
+  - {fileID: 3122387586949215423}
   m_Father: {fileID: 1997006314}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -28212,6 +28293,87 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!1 &5066171510499927741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7654980914776245162}
+  - component: {fileID: 4079871466029169755}
+  - component: {fileID: 4666135137151714766}
+  m_Layer: 5
+  m_Name: Spuds Doubled Counter Label
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7654980914776245162
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5066171510499927741}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8394313406701811493}
+  m_Father: {fileID: 1997006314}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 404, y: 134}
+  m_SizeDelta: {x: 50, y: 15}
+  m_Pivot: {x: 0, y: 0}
+--- !u!222 &4079871466029169755
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5066171510499927741}
+  m_CullTransparentMesh: 0
+--- !u!114 &4666135137151714766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5066171510499927741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 16
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Doubled
 --- !u!1 &5071817752170828012
 GameObject:
   m_ObjectHideFlags: 0
@@ -28672,6 +28834,7 @@ MonoBehaviour:
   _farmCowImage: {fileID: 6236591149107811115}
   _rangeCowImage: {fileID: 7307516923223317982}
   _hayDoubledCounterText: {fileID: 1586680869183039640}
+  _spudsDoubledCounterText: {fileID: 2340869516400099545}
   _hayNormal: {fileID: 21300000, guid: f4037a9eaa12c2641b6219298a147410, type: 3}
   _hayDoubled: {fileID: 21300000, guid: 0636b5b7de91aa344b9c2b7ccbf472e0, type: 3}
   _grainNormal: {fileID: 21300000, guid: dc9df8f006c0cae4492472f44aaf7e35, type: 3}
@@ -28849,6 +29012,7 @@ MonoBehaviour:
   _okToProceed: 0
   _hasRolledForMovement: 0
   _tetonDamRoll: 0
+  forcedLoanPanelInUse: 0
   _diceRoll: {fileID: 0}
   _pManager: {fileID: 0}
   _selectedIndex: 0
@@ -28993,7 +29157,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8176771632888478899}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -34398,7 +34562,7 @@ GameObject:
   - component: {fileID: 4491861520968202945}
   - component: {fileID: 6916537692910224367}
   m_Layer: 5
-  m_Name: Text (4)
+  m_Name: Farm Cows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34417,7 +34581,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1099414399454176961}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -35180,7 +35344,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8176771632888478899}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -36043,7 +36207,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4749420945413176783}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -37772,7 +37936,7 @@ GameObject:
   - component: {fileID: 1496834557698349726}
   - component: {fileID: 734725291375244095}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Hay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38644,7 +38808,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4749420945413176783}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -40043,7 +40207,7 @@ GameObject:
   - component: {fileID: 1721708934160439661}
   - component: {fileID: 4397871205352998896}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Fruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

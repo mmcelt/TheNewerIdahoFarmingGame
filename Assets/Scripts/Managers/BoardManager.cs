@@ -106,7 +106,7 @@ public class BoardManager : MonoBehaviour
 
 			case 4:
 				_headerText.text = "4TH WEEK IN JANUARY";
-				_spaceText.text = "Beautiful Days!\nDouble all your Hay Harvests this year.";
+				_spaceText.text = "Beautiful Days!!\nDouble all your Hay & Spud Harvests this year!";
 
 				_startPosition = new Vector3(-189, 464);
 				break;
@@ -536,12 +536,15 @@ public class BoardManager : MonoBehaviour
 				}
 				break;
 
-			case 4:	//double your hay harvest this year
+			case 4:	//double your hay & spud harvests this year
 				_pManager._pHayDoubled = true;
+				_pManager._pSpudsDoubled = true;
 				_pManager._pHayDoubledCounter++;
+				_pManager._pSpudsDoubledCounter++;
 				//Debug.Log("HAY COUNTER: " + _pManager._pHayDoubledCounter);
 				AudioManager.Instance.PlaySound(AudioManager.Instance._good);
 				_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Hay", _pManager._pHay, true);
+				_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Spuds", _pManager._pSpuds, true);
 				_uiManager.UpdateUI();
 				break;
 
