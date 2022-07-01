@@ -80,7 +80,7 @@ public class GetSpaceInfo : MonoBehaviour
 				break;
 			case 4:
 				_headerText.text = "4TH WEEK IN JANUARY";
-				_spaceText.text = "Beautiful Days!\nDouble all your Hay Harvests this year.";
+				_spaceText.text = "Beautiful Days!!\nDouble all your Hay & Spud Harvests this year!";
 				break;
 			case 5:
 				_headerText.text = "1ST WEEK IN FEBRUARY";
