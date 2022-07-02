@@ -1696,6 +1696,7 @@ public class UIManager : MonoBehaviourPun
 	{
 		_completeModalPanel.SetActive(true);
 		_sellOtbToPlayerPanel.SetActive(true);
+		_salePriceInput.text = string.Empty;
 		_sellOtbToPlayerMessageText.text = "You are selling " + _selectedCard.summary;
 		_sellOtbToPlayerMessageText.text += "\n\nRecommended Sale price is: " + GetSalePrice().ToString("c0");
 		PopulateDropdown(_playerSelectionDropdown.name);

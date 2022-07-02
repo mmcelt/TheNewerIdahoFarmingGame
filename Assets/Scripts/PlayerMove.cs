@@ -660,6 +660,7 @@ public class PlayerMove : MonoBehaviourPun
 	{
 		_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Hay", _pManager._pHay, false);
 		_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Grain", _pManager._pGrain, false);
+		_sManager.PlaceFarmSticker(GameManager.Instance.myFarmerName, "Spuds", _pManager._pSpuds, false);
 	}
 
 	void ResetHarvests()
