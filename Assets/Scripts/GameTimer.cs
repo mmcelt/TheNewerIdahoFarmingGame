@@ -25,7 +25,6 @@ public class GameTimer : MonoBehaviourPun
 
 	#endregion
 
-
 	#region Properties
 
 

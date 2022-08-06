@@ -191,6 +191,7 @@ MonoBehaviour:
   _pWheatCutInHalf: 0
   _pCowsIncreased: 0
   _pSpudsDoubled: 0
+  _pSpudsDoubledCounter: 0
   _pCornDoubled: 0
   _firstHay: 0
   _cherries: 0
@@ -233,7 +234,7 @@ MonoBehaviour:
   _currentPosition: {x: 0, y: 0, z: 0}
   _currentYear: 0
   _cowCounter: 0
-  _spudCounter: 0
+  spudsDoubledCounter: 0
 --- !u!114 &-3047897340716963118
 MonoBehaviour:
   m_ObjectHideFlags: 0
