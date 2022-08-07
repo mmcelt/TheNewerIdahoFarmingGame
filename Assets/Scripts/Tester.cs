@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Tester : MonoBehaviour
 {
 	#region Fields & Properties
 
-	public GameObject _winnersListPanel;
+	public TMP_Text _testText;
+
+	[SerializeField] int _testNum, _doubler;
 
 	#endregion
 
@@ -19,12 +22,7 @@ public class Tester : MonoBehaviour
 
 	void Start() 
 	{
-		
-	}
-	
-	void Update() 
-	{
-		
+		_testText.text = $"{_testNum *= (int)(Mathf.Pow(2,_doubler))}";
 	}
 	#endregion
 

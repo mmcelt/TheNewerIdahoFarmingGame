@@ -696,7 +696,7 @@ public class HarvestManager : MonoBehaviour
 			_harvestCheck = (int)tempCheck;
 		}
 		if (commodity == "Spuds" && _pManager._pSpudsDoubled)
-			_harvestCheck *= 2;
+			_harvestCheck *= (int)(Mathf.Pow(2, _pManager._pSpudsDoubledCounter));
 		if (commodity == "Corn" && _pManager._pCornDoubled)
 			_harvestCheck *= 2;
 	}
